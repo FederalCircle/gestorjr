@@ -50,6 +50,7 @@ $config = array('clientes' => array(array(
                                 	'rules'=>'required|trim|xss_clean'
                                 ))
                 ,
+
                 'servicos' => array(array(
                                     'field'=>'nome',
                                     'label'=>'Nome',
@@ -157,7 +158,78 @@ $config = array('clientes' => array(array(
                                     'label'=>'Situacao',
                                     'rules'=>'required|trim|xss_clean'
                                 ))
-                ,      
+                ,
+                  'associados' => array(array(
+                                    'field'=>'nome',
+                                    'label'=>'Nome',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'curso',
+                                    'label'=>'Curso',
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'cpf',
+                                    'label'=>'CPF',
+                                    'rules'=>'required|trim|xss_clean|is_unique[usuarios.cpf]'
+                                ),
+                                array(
+                                    'field'=>'rua',
+                                    'label'=>'Rua',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'numero',
+                                    'label'=>'Numero',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'bairro',
+                                    'label'=>'Bairro',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'cidade',
+                                    'label'=>'Cidade',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'estado',
+                                    'label'=>'Estado',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'email',
+                                    'label'=>'Email',
+                                    'rules'=>'required|trim|valid_email|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'senha',
+                                    'label'=>'Senha',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'telefone',
+                                    'label'=>'Telefone',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'celular',
+                                    'label'=>'celular',
+                                    'rules'=>'trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'situacao',
+                                    'label'=>'Situacao',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'dataAss',
+                                    'label'=>'dataAss',
+                                    'rules'=>'trim|xss_clean'
+                                ))
+                ,            
                 'os' => array(array(
                                     'field'=>'dataInicial',
                                     'label'=>'DataInicial',

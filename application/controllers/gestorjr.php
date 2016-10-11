@@ -69,6 +69,7 @@ class gestorjr extends CI_Controller {
 
         $data['results'] = $this->gestorjr_model->pesquisar($termo);
         $this->data['produtos'] = $data['results']['produtos'];
+        $this->data['associados'] = $data['results']['associados'];
         $this->data['servicos'] = $data['results']['servicos'];
         $this->data['os'] = $data['results']['os'];
         $this->data['clientes'] = $data['results']['clientes'];

@@ -60,6 +60,10 @@
     <?php if($this->permission->checkPermission($this->session->userdata('permissao'),'vProduto')){ ?>
         <li class="<?php if(isset($menuProdutos)){echo 'active';};?>"><a href="<?php echo base_url()?>index.php/produtos"><i class="icon icon-barcode"></i> <span>Produtos</span></a></li>
     <?php } ?>
+
+    <?php if($this->permission->checkPermission($this->session->userdata('permissao'),'vServico')){ ?>
+        <li class="<?php if(isset($menuAssociados)){echo 'active';};?>"><a href="<?php echo base_url()?>index.php/associados"><i class="icon icon-wrench"></i> <span>Associados</span></a></li>
+    <?php } ?>
     
     <?php if($this->permission->checkPermission($this->session->userdata('permissao'),'vServico')){ ?>
         <li class="<?php if(isset($menuServicos)){echo 'active';};?>"><a href="<?php echo base_url()?>index.php/servicos"><i class="icon icon-wrench"></i> <span>Serviços</span></a></li>

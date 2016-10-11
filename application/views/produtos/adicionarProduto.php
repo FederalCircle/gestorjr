@@ -37,7 +37,12 @@
                             <input id="precoVenda" class="money" type="text" name="precoVenda" value="<?php echo set_value('precoVenda'); ?>"  />
                         </div>
                     </div>
-
+                    <div class="control-group">
+                        <label for="dataAss" class="control-label">Data de Associação</label>
+                        <div class="controls">
+                            <input id="dataAss" type="text" class="money" name="dataAss" value="<?php echo set_value('dataAss'); ?>"  />
+                        </div>
+                    </div>
                     <div class="control-group">
                         <label for="estoque" class="control-label">Estoque<span class="required">*</span></label>
                         <div class="controls">

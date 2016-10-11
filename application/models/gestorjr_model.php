@@ -70,6 +70,11 @@ class gestorjr_model extends CI_Model {
          $this->db->limit(5);
          $data['servicos'] = $this->db->get('servicos')->result();
 
+        //buscando associados
+         $this->db->like('nome',$termo);
+         $this->db->limit(5);
+         $data['associados'] = $this->db->get('associados')->result();
+
          return $data;
 
 

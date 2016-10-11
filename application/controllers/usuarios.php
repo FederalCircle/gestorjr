@@ -138,6 +138,7 @@ class Usuarios extends CI_Controller {
         $this->form_validation->set_rules('estado', 'Estado', 'trim|required|xss_clean');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
         $this->form_validation->set_rules('telefone', 'Telefone', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('celular', 'Telefone', 'trim|required|xss_clean');
         $this->form_validation->set_rules('situacao', 'Situação', 'trim|required|xss_clean');
         $this->form_validation->set_rules('permissoes_id', 'Permissão', 'trim|required|xss_clean');
 

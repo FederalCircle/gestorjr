@@ -18,8 +18,11 @@
             <li class="bg_lg"> <a href="<?php echo base_url()?>index.php/produtos"> <i class="icon-barcode"></i> Projetos</a> </li>
         <?php } ?>
         <?php if($this->permission->checkPermission($this->session->userdata('permissao'),'vServico')){ ?>
-            <li class="bg_ly"> <a href="<?php echo base_url()?>index.php/servicos"> <i class="icon-wrench"></i> Associados</a> </li>
+            <li class="bg_ly"> <a href="<?php echo base_url()?>index.php/servicos"> <i class="icon-wrench"></i> Serviços</a> </li>
         <?php } ?>
+         <?php if($this->permission->checkPermission($this->session->userdata('permissao'),'vServico')){ ?>
+            <li class="bg_ly"> <a href="<?php echo base_url()?>index.php/associados"> <i class="icon-wrench"></i> Associados</a>
+             </li> <?php } ?>
         <?php if($this->permission->checkPermission($this->session->userdata('permissao'),'vOs')){ ?>
             <li class="bg_lo"> <a href="<?php echo base_url()?>index.php/os"> <i class="icon-tags"></i> OS - TI</a> </li>
         <?php } ?>
@@ -223,6 +226,7 @@
                         <ul class="site-stats">
                             <li class="bg_lh"><i class="icon-group"></i> <strong><?php echo $this->db->count_all('clientes');?></strong> <small>Clientes</small></li>
                             <li class="bg_lh"><i class="icon-barcode"></i> <strong><?php echo $this->db->count_all('produtos');?></strong> <small>Produtos </small></li>
+                            <li class="bg_lh"><i class="icon-group"></i> <strong><?php echo $this->db->count_all('associados');?></strong> <small>Associados</small></li>
                             <li class="bg_lh"><i class="icon-tags"></i> <strong><?php echo $this->db->count_all('os');?></strong> <small>Ordens de Serviço</small></li>
                             <li class="bg_lh"><i class="icon-wrench"></i> <strong><?php echo $this->db->count_all('servicos');?></strong> <small>Serviços</small></li>
                             
