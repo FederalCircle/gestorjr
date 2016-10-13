@@ -9,9 +9,66 @@
         </div>
         </form>
     </div>
+
     <div class="span12" style="margin-left: 0; margin-top: 0">
+    <!-- Associados-->
+     <div class="span6">
+        <div class="widget-box" style="min-height: 200px">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="icon-user"></i>
+                </span>
+                <h5>Associados</h5>
+
+            </div>
+
+            <div class="widget-content nopadding">
+
+
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>CPF/CNPJ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if($associados == null){
+                            echo '<tr><td colspan="4">Nenhum cliente foi encontrado.</td></tr>';
+                        }
+                        foreach ($associados as $r) {
+                            echo '<tr>';
+                            echo '<td>' . $r->idAssociados . '</td>';
+                            echo '<td>' . $r->nome . '</td>';
+                            echo '<td>' . $r->cpf . '</td>';
+                            echo '<td>';
+
+                            if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
+                                echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/associados/visualizar/' . $r->idAssociados . '" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
+                            } 
+                            if($this->permission->checkPermission($this->session->userdata('permissao'),'eCliente')){
+                                echo '<a href="' . base_url() . 'index.php/associados/editar/' . $r->idAssociados . '" class="btn btn-info tip-top" title="Editar Cliente"><i class="icon-pencil icon-white"></i></a>'; 
+                            } 
+                            
+                            
+                            echo '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                        <tr>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
     <!--Produtoss-->
-    <div class="span6" style="margin-left: 0; margin-top: 0">
+    <div class="span6" style="margin-left: 20; margin-top: 0">
         <div class="widget-box" style="min-height: 200px">
             <div class="widget-title">
                 <span class="icon">
@@ -63,10 +120,11 @@
             </div>
         </div>
     </div>
+    </div>
 
 
     <!--Clientes-->
-    <div class="span6">
+    <div class="span6" style="margin-left: 0">
         <div class="widget-box" style="min-height: 200px">
             <div class="widget-title">
                 <span class="icon">
@@ -121,10 +179,10 @@
         </div>
 
     </div>
-    </div>
+
     
     <!--Serviços-->
-    <div class="span6" style="margin-left: 0">
+    <div class="span6" style="margin-left: 20">
         <div class="widget-box" style="min-height: 200px">
             <div class="widget-title">
                 <span class="icon">
@@ -176,7 +234,7 @@
 
 
     <!--Ordens de Serviço-->
-    <div class="span6">
+    <div class="span6" style="margin-left: 0" >
          <div class="widget-box" style="min-height: 200px">
             <div class="widget-title">
                 <span class="icon">

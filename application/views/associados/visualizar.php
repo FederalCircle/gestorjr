@@ -36,8 +36,8 @@
                                                     <td><?php echo $result->cpf ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="text-align: right"><strong>Data de Cadastro</strong></td>
-                                                    <td><?php echo date('d/m/Y',  strtotime($result->dataAss)) ?></td>
+                                                    <td style="text-align: right"><strong>Data de Associação</strong></td>
+                                                    <td><?php echo $result->dataAss //date('d/m/Y',  strtotime($result->dataAss)) ?></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -101,9 +101,9 @@
                                                     <td style="text-align: right"><strong>Cidade</strong></td>
                                                     <td><?php echo $result->cidade ?> - <?php echo $result->estado ?></td>
                                                 </tr>
-                                                <tr>
+                                               <!-- <tr>
                                                     <td style="text-align: right"><strong>CEP</strong></td>
-                                                    <td><?php echo $result->area ?></td>
+                                                    <td><?php echo $result->area ?></td>-->
                                                 </tr>
                                             </tbody>
                                         </table>

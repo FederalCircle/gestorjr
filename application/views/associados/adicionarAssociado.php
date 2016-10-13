@@ -99,7 +99,7 @@
                     <div class="control-group">
                         <label for="dataAss" class="control-label">Data de Associação</label>
                         <div class="controls">
-                            <input id="dataAss" type="text" class="money" name="dataAss" value="<?php echo set_value('dataAss'); ?>"  />
+                            <input id="dataAss" type="text" name="dataAss" value="<?php echo set_value('dataAss'); ?>"  />
                         </div>
                     </div>
 

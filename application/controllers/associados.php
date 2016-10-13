@@ -80,11 +80,6 @@ class Associados extends CI_Controller {
         if ($this->form_validation->run('associados') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
-            $dataAss = $this->input->post('dataAss');
-            $dataAss = str_replace(",","", $dataAss);
-
-             $dataAss = $this->input->post('dataAss');
-            $dataAss = str_replace(",","", $dataAss);
 
             $this->load->library('encrypt');     
             $data = array(
@@ -104,8 +99,7 @@ class Associados extends CI_Controller {
                 'situacao'=> set_value('situacao'),
 //'dataAss' => $dataAss
                 'permissoes_id' => $this->input->post('permissoes_id'),
-                'dataAss' => $dataAss
-
+                'dataAss' => set_value('dataAss'),
             );
 
             if ($this->associados_model->add('associados', $data) == TRUE) {
