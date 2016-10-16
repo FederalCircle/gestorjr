@@ -115,78 +115,6 @@ class Associados extends CI_Controller {
         $this->load->view('tema/topo', $this->data);
 
     }
-
-    /*function editar() {
-        if(!$this->permission->checkPermission($this->session->userdata('permissao'),'eServico')){
-           $this->session->set_flashdata('error','Você não tem permissão para editar serviços.');
-           redirect(base_url());
-        }
-        $this->load->library('form_validation');
-        $this->data['custom_error'] = '';
-
-        if ($this->form_validation->run('associados') == false) {
-            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
-        } else {
-            $senha = $this->input->post('senha'); 
-            if($senha != null){
-                $this->load->library('encrypt');   
-                $senha = $this->encrypt->sha1($senha);
-
-                $data = array(
-                        'nome' => $this->input->post('nome'),
-                        'curso' => $this->input->post('curso'),
-                        'cpf' => $this->input->post('cpf'),
-                        'rua' => $this->input->post('rua'),
-                        'numero' => $this->input->post('numero'),
-                        'bairro' => $this->input->post('bairro'),
-                        'cidade' => $this->input->post('cidade'),
-                        'estado' => $this->input->post('estado'),
-                        'email' => $this->input->post('email'),
-                        'senha' => $senha,
-                        'telefone' => $this->input->post('telefone'),
-                        'celular' => $this->input->post('celular'),
-                        'dataAss' => $this->input->post('dataAss'),
-                        'situacao' => $this->input->post('situacao'),
-                        'permissoes_id' => $this->input->post('permissoes_id')
-                );
-            }  
-
-            else{
-
-                $data = array(
-                        'nome' => $this->input->post('nome'),
-                        'curso' => $this->input->post('curso'),
-                        'cpf' => $this->input->post('cpf'),
-                        'rua' => $this->input->post('rua'),
-                        'numero' => $this->input->post('numero'),
-                        'bairro' => $this->input->post('bairro'),
-                        'cidade' => $this->input->post('cidade'),
-                        'estado' => $this->input->post('estado'),
-                        'email' => $this->input->post('email'),
-                        'telefone' => $this->input->post('telefone'),
-                        'celular' => $this->input->post('celular'),
-                        'dataAss' => $this->input->post('dataAss'),
-                        'situacao' => $this->input->post('situacao'),
-                        'permissoes_id' => $this->input->post('permissoes_id')
-                );
-
-            }  
-
-            if ($this->associados_model->edit('associados', $data, 'idAssociados', $this->input->post('idAssociados')) == TRUE) {
-                $this->session->set_flashdata('success', 'Serviço editado com sucesso!');
-                redirect(base_url() . 'index.php/associados/editar/'.$this->input->post('idAssociados'));
-            } else {
-                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um errro.</p></div>';
-            }
-        }
-
-        $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
-        $this->load->model('permissoes_model');
-        $this->data['permissoes'] = $this->permissoes_model->getActive('permissoes','permissoes.idPermissao,permissoes.nome'); 
-        $this->data['view'] = 'associados/editarAssociado';
-        $this->load->view('tema/topo', $this->data);
-
-    }*/
 function editar(){  
         
         if(!$this->uri->segment(3) || !is_numeric($this->uri->segment(3))){
@@ -197,16 +125,16 @@ function editar(){
         $this->load->library('form_validation');    
         $this->data['custom_error'] = '';
         $this->form_validation->set_rules('nome', 'Nome', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('curso', 'Curso', 'trim|xss_clean');
+        $this->form_validation->set_rules('curso', 'Curso', 'trim|required|xss_clean');
         $this->form_validation->set_rules('cpf', 'CPF', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('rua', 'Rua', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('numero', 'Número', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('bairro', 'Bairro', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('cidade', 'Cidade', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('estado', 'Estado', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('telefone', 'Telefone', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('dataAss', 'dataAss', 'trim|xss_clean');
+        $this->form_validation->set_rules('rua', 'Rua', 'trim|xss_clean');
+        $this->form_validation->set_rules('numero', 'Número', 'trim|xss_clean');
+        $this->form_validation->set_rules('bairro', 'Bairro', 'trim|xss_clean');
+        $this->form_validation->set_rules('cidade', 'Cidade', 'trim|xss_clean');
+        $this->form_validation->set_rules('estado', 'Estado', 'trim|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'trim|xss_clean');
+        $this->form_validation->set_rules('telefone', 'Telefone', 'trim|xss_clean');
+        $this->form_validation->set_rules('dataAss', 'dataAss', 'trim|required|xss_clean');
         $this->form_validation->set_rules('situacao', 'Situação', 'trim|required|xss_clean');
         $this->form_validation->set_rules('permissoes_id', 'Permissão', 'trim|required|xss_clean');
 

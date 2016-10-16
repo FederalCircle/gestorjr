@@ -23,7 +23,17 @@
                     <div class="control-group">
                         <label for="curso" class="control-label">Curso<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="curso" type="text" name="curso" value="<?php echo $result->curso; ?>"  />
+                             <select name="curso" id="curso">
+                                 <option value="<?php echo $result->curso; ?>"><?php echo $result->curso; ?></option>
+                                <option value="Eng. civil">Eng. civil</option>
+                                <option value="Eng. de Automação Industrial">Eng. de Automação Industrial</option>
+                                <option value="Eng. de Computação">Eng. de Computação</option>
+                                <option value="Eng. de Telecomunicações">Eng. de Telecomunicações</option>
+                                <option value="Eng. Eletrônica">Eng. Eletrônica</option>
+                                <option value="Eng. EletroTécnica">Eng. EletroTécnica</option>
+                                <option value="Eng. Mecânica">Eng. Mecânica</option>
+                                
+                            </select>
                         </div>
                     </div>
 
@@ -85,7 +95,7 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="telefone" class="control-label">Telefone<span class="required">*</span></label>
+                        <label for="telefone" class="control-label">Telefone</label>
                         <div class="controls">
                             <input id="telefone" type="text" name="telefone" value="<?php echo $result->telefone; ?>"  />
                         </div>
@@ -99,9 +109,9 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="dataAss" class="control-label">Curso<span class="required">*</span></label>
+                        <label for="dataAss" class="control-label">dataAss<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="dataAss" type="text" name="curso" value="<?php echo $result->dataAss; ?>"  />
+                            <input id="dataAss" type="text" name="dataAss" value="<?php echo $result->dataAss; ?>"  />
                         </div>
                     </div>
                     <div class="control-group">

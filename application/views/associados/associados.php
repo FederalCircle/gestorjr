@@ -20,7 +20,8 @@ if(!$results){?>
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
-                        <th>CPF/CNPJ</th>
+                        <th>Setor</th>
+                        <th>Curso</th>
                         <th>Telefone</th>
                         <th></th>
                     </tr>
@@ -53,11 +54,12 @@ if(!$results){?>
 <table class="table table-bordered ">
     <thead>
         <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>CPF/CNPJ</th>
-            <th>Telefone</th>
-            <th></th>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Setor</th>
+        <th>Curso</th>
+        <th>Telefone</th>
+        <th></th>
         </tr>
     </thead>
     <tbody>
@@ -65,7 +67,8 @@ if(!$results){?>
             echo '<tr>';
             echo '<td>'.$r->idAssociados.'</td>';
             echo '<td>'.$r->nome.'</td>';
-            echo '<td>'.$r->cpf.'</td>';
+            echo '<td>'.$r->permissao.'</td>';
+             echo '<td>'.$r->curso.'</td>';
             echo '<td>'.$r->telefone.'</td>';
             echo '<td>
              <a href="'.base_url().'index.php/associados/editar/'.$r->idAssociados.'" class="btn btn-info tip-top" title="Editar Usuário"><i class="icon-pencil icon-white"></i></a>';
