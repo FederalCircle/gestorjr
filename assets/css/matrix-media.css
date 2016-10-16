@@ -22,7 +22,7 @@ body {
 #sidebar > ul > li.active a{ color:#fff; text-decoration:none;}
 
 #sidebar > ul > li > a > .label {
-	background-color:#EEA400;
+	background-color:rgba(0,0,0,0);
 }
 #sidebar > ul > li > a:hover {
 	background-color: #EEA400; color:#fff;

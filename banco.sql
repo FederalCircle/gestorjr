@@ -354,7 +354,7 @@ CREATE  TABLE IF NOT EXISTS `emitente` (
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
--------------------------------------------------------
+-- ----------------------------------------------------
 -- Table `associados`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `associados` (
