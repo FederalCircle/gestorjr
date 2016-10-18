@@ -3,6 +3,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#tab1">Dados do Associado</a></li>
             <li><a data-toggle="tab" href="#tab2">Ordens de Serviço</a></li>
+            <li><a data-toggle="tab" href="#tab3">Desempenho</a></li>
             <div class="buttons">
                     <?php if($this->permission->checkPermission($this->session->userdata('permissao'),'eCliente')){
                         echo '<a title="Icon Title" class="btn btn-mini btn-info" href="'.base_url().'index.php/associados/editar/'.$result->idAssociados.'"><i class="icon-pencil icon-white"></i> Editar</a>'; 
@@ -118,6 +119,7 @@
         </div>
 
 
+    
         <!--Tab 2-->
         <div id="tab2" class="tab-pane" style="min-height: 300px">
             <?php if (!$results) { ?>
@@ -175,6 +177,76 @@
                     }
                     if($this->permission->checkPermission($this->session->userdata('permissao'),'eOs')){
                         echo '<a href="' . base_url() . 'index.php/os/editar/' . $r->idOs . '" class="btn btn-info tip-top" title="Editar OS"><i class="icon-pencil icon-white"></i></a>'; 
+                    }
+                    
+                    echo  '</td>';
+                    echo '</tr>';
+                } ?>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+            
+
+            <?php  } ?>
+
+        </div>
+            <!--Tab 3-->
+        <div id="tab3" class="tab-pane" style="min-height: 300px">
+            <?php if (!$results) { ?>
+                
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr style="backgroud-color: #2D335B">
+                                    <th>#</th>
+                                    <th>Seleção</th>
+                                    <th>trainee</th>
+                                    <th>Associação</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td colspan="6">Nenhuma OS Cadastrada</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+                <?php } else { ?>
+
+
+              
+
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr style="backgroud-color: #2D335B">
+                                    <th>#</th>
+                                    <th>Seleção</th>
+                                    <th>trainee</th>
+                                    <th>Associação</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+<?php
+                foreach ($results as $r) {
+                   // $dataInicial = date(('d/m/Y'), strtotime($r->dataInicial));
+                   // $dataFinal = date(('d/m/Y'), strtotime($r->dataFinal));
+                    echo '<tr>';
+                    echo '<td>' . $r->idAssociado . '</td>';
+                    /*echo '<td>' . $dataAss . '</td>';
+                    echo '<td>' . $dataFinal .'</td>';*/
+                    echo '<td>' . $r->dataAss . '</td>';
+                    /*echo '<td>' . $r->defeito . '</td>';
+*/
+                    echo '<td>';
+                    if($this->permission->checkPermission($this->session->userdata('permissao'),'vOs')){
+                        echo '<a href="' . base_url() . 'index.php/associados/visualizar/' . $r->idAssociado . '" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
+                    }
+                    if($this->permission->checkPermission($this->session->userdata('permissao'),'eOs')){
+                        echo '<a href="' . base_url() . 'index.php/associados/editar/' . $r->idAssociado . '" class="btn btn-info tip-top" title="Editar Associado"><i class="icon-pencil icon-white"></i></a>'; 
                     }
                     
                     echo  '</td>';

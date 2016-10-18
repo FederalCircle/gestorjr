@@ -167,7 +167,7 @@ $config = array('clientes' => array(array(
                                 array(
                                     'field'=>'curso',
                                     'label'=>'Curso',
-                                    'rules'=>'trim|xss_clean'
+                                    'rules'=>'required|trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'cpf',
@@ -177,42 +177,43 @@ $config = array('clientes' => array(array(
                                 array(
                                     'field'=>'rua',
                                     'label'=>'Rua',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'numero',
                                     'label'=>'Numero',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'bairro',
                                     'label'=>'Bairro',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'cidade',
                                     'label'=>'Cidade',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'estado',
                                     'label'=>'Estado',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'email',
                                     'label'=>'Email',
-                                    'rules'=>'required|trim|valid_email|xss_clean'
+                                    'rules'=>'trim|xss_clean'
+                                   /* 'rules'=>'trim|valid_email|xss_clean'*/
                                 ),
                                 array(
                                     'field'=>'senha',
                                     'label'=>'Senha',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'telefone',
                                     'label'=>'Telefone',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'celular',
@@ -222,13 +223,18 @@ $config = array('clientes' => array(array(
                                 array(
                                     'field'=>'situacao',
                                     'label'=>'Situacao',
-                                    'rules'=>'required|trim|xss_clean'
+                                    'rules'=>'trim|xss_clean'
                                 ),
                                 array(
                                     'field'=>'dataAss',
                                     'label'=>'dataAss',
-                                    'rules'=>'trim|xss_clean'
-                                ))
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field' => 'permissoes_id',
+                                    'label' => 'permissoes_id',
+                                    'rules' => 'required|trim|xss_clean'
+                                     ))
                 ,            
                 'os' => array(array(
                                     'field'=>'dataInicial',
