@@ -383,6 +383,41 @@ CREATE TABLE IF NOT EXISTS `associados` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+
+-- ----------------------------------------------------
+-- Table `associados`
+-- ----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetos` (
+  `idProjetos` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(80) NOT NULL,
+  `curso`VARCHAR(30) NOT NULL,
+  `cpf` VARCHAR(20) NOT NULL,
+  `rua` VARCHAR(70) NULL DEFAULT NULL,
+  `numero` VARCHAR(15) NULL DEFAULT NULL,
+  `bairro` VARCHAR(45) NULL DEFAULT NULL,
+  `cidade` VARCHAR(45) NULL DEFAULT NULL,
+  `estado` VARCHAR(20) NULL DEFAULT NULL,
+  `email` VARCHAR(80) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  `telefone` VARCHAR(20) NOT NULL,
+  `celular` VARCHAR(20) NULL DEFAULT NULL,
+  `situacao` TINYINT(1) NOT NULL,
+  `dataAss` INT(8) NOT NULL,
+  `area` INT(11) NOT NULL,
+  `permissoes_id` INT NOT NULL,
+  PRIMARY KEY (`idProjetos`),
+  INDEX `fk_projetos_permissoes1_idx` (`permissoes_id` ASC),
+  CONSTRAINT `fk_projetos_permissoes1`
+    FOREIGN KEY (`permissoes_id`)
+    REFERENCES `permissoes` (`idPermissao`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+-- ----------------------------------------------------
+-- End Data Bases
+-- ----------------------------------------------------
+
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = latin1;
 
