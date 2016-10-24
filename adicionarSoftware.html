@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+<link rel="stylesheet" href="js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<script type="text/javascript" src="js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+</head>
+<body>
+<div class="row-fluid" style="margin-top:0">
+    <div class="span12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="icon-tags"></i>
+                </span>
+                <h5>Solicitação de Software</h5>
+            </div>
+            <div class="widget-content nopadding">        
+
+                <div class="span12" id="divProdutosServicos" style=" margin-left: 0">
+                    <ul class="nav nav-tabs">
+                        <li class="active" id="tabDetalhes"><a href="#tab1" data-toggle="tab">Detalhes da Solicitação</a></li>   
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="span12" id="divCadastrarOs">
+                                <?php if($custom_error == true){ ?>
+                                <!--div class="span12 alert alert-danger" id="divInfo" style="padding: 1%;">Dados incompletos, verifique os campos com asterisco ou se selecionou corretamente cliente e responsável.</div-->
+                                <?php } ?>
+                                <form action="<?php echo current_url(); ?>" method="post" id="formOs">
+                                    <div class="span12" style="padding: 1%; margin-left: 0" align="center">
+                                     <h5>Dados Gerais</h5>
+                                      <hr>   
+                                     </div>                       
+                                    <div class="span12" style="padding: 1%; margin-left: 0">                                 
+                                        <div class="span3">                                       
+                                            <label for="dataInicial">Data da solicitação<span class="required">*</span></label>
+                                            <input id="dataInicial" class="span12 datepicker" type="text" name="dataInicial" value=""  />
+                                         </div>
+                                         <div class="span3">                                       
+                                            <label for="tecnico">Requerente<span class="required">*</span></label>
+                                            <input id="tecnico" class="span12" type="text" name="tecnico" value=""  />
+                                            <input id="usuarios_id" class="span12" type="hidden" name="usuarios_id" value=""  />
+                                        </div>                                        
+                                         <div class="span3">                                      
+                                            <label for="tecnico">Setor<span class="required">*</span></label>
+                                            <input id="tecnico" class="span12" type="text" name="tecnico" value=""  />
+                                            <input id="usuarios_id" class="span12" type="hidden" name="usuarios_id" value=""  />
+                                        </div>
+                                         <div class="span3">                                        
+                                            <label for="tecnico">Responsável/Setor<span class="required">*</span></label>
+                                            <input id="tecnico" class="span12" type="text" name="tecnico" value=""  />
+                                            <input id="usuarios_id" class="span12" type="hidden" name="usuarios_id" value=""  />
+                                        </div>
+                                    </div>
+                                        <div class="span12" style="padding: 1%; margin-left: 0">  
+                                            <div class="span3">
+                                                <label for="associado">Fone do Requerente<span class="required">*</span></label>
+                                                <input id="associado" class="span12" type="text" name="associado" value=""  />
+                                                <input id="associados_id" class="span12" type="hidden" name="associados_id" value=""  />
+                                            </div>
+                                            <div class="span3">
+                                                <label for="tecnico">E-mail do Requerente<span class="required">*</span></label>
+                                                <input id="tecnico" class="span12" type="text" name="tecnico" value=""  />
+                                                <input id="usuarios_id" class="span12" type="hidden" name="usuarios_id" value=""  />
+                                            </div>  
+                                            <div class="span3">
+                                                <label for="associado">Fone do Responsável<span class="required">*</span></label>
+                                                <input id="associado" class="span12" type="text" name="associado" value=""  />
+                                                <input id="associados_id" class="span12" type="hidden" name="associados_id" value=""  />
+                                            </div>
+                                            <div class="span3">
+                                                <label for="tecnico">E-mail do Responsável<span class="required">*</span></label>
+                                                <input id="tecnico" class="span12" type="text" name="tecnico" value=""  />
+                                                <input id="usuarios_id" class="span12" type="hidden" name="usuarios_id" value=""  />
+                                            </div>  
+                                        </div>
+                                    <div class="span12" style="padding: 1%; margin-left: 0" align="center">
+                                    <h5>Dados do software</h5>
+                                    <hr>   
+                                    </div>  
+                                    <div class="span12" style="padding: 1%; margin-left: 0">                                 
+                                         <div class="span6">
+                                            <label for="associado">Nome do Software<span class="required">*</span></label>
+                                            <input id="associado" class="span12" type="text" name="associado" value=""  />
+                                            <input id="associados_id" class="span12" type="hidden" name="associados_id" value=""  />
+                                        </div>
+                                        <div class="span3">
+                                            <label for="tecnico">Versão<span class="required">*</span></label>
+                                            <input id="tecnico" class="span12" type="text" name="tecnico" value=""  />
+                                            <input id="usuarios_id" class="span12" type="hidden" name="usuarios_id" value=""  />
+                                        </div>
+                                        <div class="span3">
+                                            <label for="associado">Fabricante<span class="required">*</span></label>
+                                            <input id="associado" class="span12" type="text" name="associado" value=""  />
+                                            <input id="associados_id" class="span12" type="hidden" name="associados_id" value=""  />
+                                        </div>
+                                    </div>
+                                     <div class="span12" style="padding: 1%; margin-left: 0">  
+                                        <div class="span6">
+                                            <label for="tecnico">Características do software (requerimentos de hardware e software, especificações)<span class="required">*</span></label>
+                                            <textarea class="span12" name="descricaoProduto" id="descricaoProduto" cols="30" rows="4"></textarea>
+                                        </div>
+                                        <div class="span3">
+                                            <label for="dataInicial">Formas de licenciamento existente<span class="required">*</span></label>
+                                            <input id="dataInicial" class="span12 datepicker" type="text" name="dataInicial" value=""  />
+                                        </div>
+                                        <div class="span3">
+                                            <label for="dataInicial">Quantidade e tipo de licenças solicitadas<span class="required">*</span></label>
+                                            <input id="dataInicial" class="span12 datepicker" type="text" name="dataInicial" value=""  />
+                                        </div> 
+                                        <div class="span3">
+                                            <label for="dataInicial">Valor por Licença (estimativa)<span class="required">*</span></label>
+                                            <input id="dataInicial" class="span12 datepicker" type="text" name="dataInicial" value=""  />
+                                        </div>
+                                        <div class="span3">
+                                            <label for="dataInicial">Valor Total (estimativa)<span class="required">*</span></label>
+                                            <input id="dataInicial" class="span12 datepicker" type="text" name="dataInicial" value=""  />
+                                        </div> 
+                                    </div>
+                                     <div class="span12" style="padding: 1%; margin-left: 0">  
+                                        <div class="span6">
+                                            <label for="dataInicial">Softwares similares<span class="required">*</span></label>
+                                            <textarea class="span12" name="descricaoProduto" id="descricaoProduto" cols="30" rows="3"></textarea>
+                                        </div> 
+                                        <div class="span6">
+                                            <label for="dataInicial">Finalidade/Utilidade/Justificativa<span class="required">*</span></label>
+                                             <textarea class="span12" name="descricaoProduto" id="descricaoProduto" cols="30" rows="3"></textarea>
+                                            (Local onde deverá ser instalado o Software: prédio/sala, por quem e em que vai ser usado)
+                                        </div> 
+                                    </div>
+                                    <div class="span12" style="padding: 1%; margin-left: 0" align="center">
+                                    <h5>Uso do Setor de Tecnologia da Informação</h5>
+                                    <hr>   
+                                    </div>  
+                                    <div class="span12" style="padding: 1%; margin-left: 0">                                        
+                                        <div class="span6">
+                                          <label for="garantia">Parecer do Setor de TI</label>
+                                          <textarea class="span12" name="descricaoProduto" id="descricaoProduto" cols="30" rows="3"></textarea>
+                                        </div>
+                                        <div class="span2">
+                                            <label for="garantia">Prioridade</label>
+                                            <div class="checkbox">
+                                            <label><input type="checkbox" value="">Prioritária/emergencial</label>
+                                            </div>
+                                            <div class="checkbox">
+                                              <label><input type="checkbox" value="">Normal</label>
+                                            </div>
+                                            <div class="checkbox disabled">
+                                              <label><input type="checkbox" value="">Demanda futura</label>
+                                            </div>
+                                        </div>
+                                        <div class="span4">
+                                            <label for="garantia">Executado Por</label>
+                                            <input id="garantia" type="text" class="span12" name="garantia" value=""  />
+                                        </div>   
+                                    </div>                    
+                                  </form>
+                            </div>
+                        </div> 
+                     </div>  
+                   <div class="span12" style="padding: 1%; margin-left: 0">
+                        <div class="span6 offset3" style="text-align: center">
+                            <button class="btn btn-success" id="btnContinuar"><i class="icon-share-alt icon-white"></i> Continuar</button>
+                            <a href="<?php echo base_url() ?>index.php/os" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+</body>
+</html>
+                          
+     
