@@ -18,113 +18,59 @@
                             <input id="nome" type="text" name="nome" value="<?php echo set_value('nome'); ?>"  />
                         </div>
                     </div>
-
-                     <div class="control-group">
-                        <label for="curso" class="control-label">Curso<span class="required">*</span></label>
+                    <div class="control-group">
+                        <label for="cliente" class="control-label">Cliente<span class="required">*</span></label>
                         <div class="controls">
-                        <select name="curso" id="curso">
+                            <input id="cliente" type="text" name="cliente" value="<?php echo set_value('cliente'); ?>"  />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="area" class="control-label">Área<span class="required">*</span></label>
+                        <div class="controls">
+                        <select name="area" id="area">
                                 <option value=""></option>
-                                <option value="Eng. civil">Eng. civil</option>
+                                <option value="Eng. Civil">Eng. civil</option>
                                 <option value="Eng. de Automação Industrial">Eng. de Automação Industrial</option>
-                                <option value="Eng. de Computação">Eng. de Computação</option>
+                                <option value="Eng. da Computação">Eng. de Computação</option>
                                 <option value="Eng. de Telecomunicações">Eng. de Telecomunicações</option>
                                 <option value="Eng. Eletrônica">Eng. Eletrônica</option>
-                                <option value="Eng. EletroTécnica">Eng. EletroTécnica</option>
+                                <option value="Eng. Eletrotécnica">Eng. EletroTécnica</option>
                                 <option value="Eng. Mecânica">Eng. Mecânica</option>
                                 
                             </select>
-                          <!--<input id="curso" type="text" name="curso" value="<?php echo set_value('curso'); ?>"  />
-                        --></div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="cpf" class="control-label">CPF<span class="required">*</span></label>
-                        <div class="controls">
-                            <input id="cpf" type="text" name="cpf" value="<?php echo set_value('cpf'); ?>"  />
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="rua" class="control-label">Rua</label>
+                        <label for="preco" class="control-label">Preço<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="rua" type="text" name="rua" value="<?php echo set_value('rua'); ?>"  />
+                            <input id="preco" type="text" name="preco" value="<?php echo set_value('preco'); ?>"  />
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="numero" class="control-label">Numero</label>
+                        <label for="dataContrato" class="control-label">Data do Contrato</label>
                         <div class="controls">
-                            <input id="numero" type="text" name="numero" value="<?php echo set_value('numero'); ?>"  />
+                            <input id="dataContrato" type="text" name="dataContrato" value="<?php echo set_value('dataContrato'); ?>"  />
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="bairro" class="control-label">Bairro</label>
+                        <label for="horas" class="control-label">Horas do Projeto</label>
                         <div class="controls">
-                            <input id="bairro" type="text" name="bairro" value="<?php echo set_value('bairro'); ?>"  />
+                            <input id="horas" type="text" name="horas" value="<?php echo set_value('horas'); ?>"  />
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="cidade" class="control-label">Cidade</label>
+                        <label for="dataEntrega" class="control-label">Data de Entrega</label>
                         <div class="controls">
-                            <input id="cidade" type="text" name="cidade" value="<?php echo set_value('cidade'); ?>"  />
+                            <input id="dataEntrega" type="text" name="dataEntrega" value="<?php echo set_value('dataEntrega'); ?>"  />
                         </div>
                     </div>
-
-                    <div class="control-group">
-                        <label for="estado" class="control-label">Estado</label>
-                        <div class="controls">
-                            <input id="estado" type="text" name="estado" value="<?php echo set_value('estado'); ?>"  />
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="email" class="control-label">Email</label>
-                        <div class="controls">
-                            <input id="email" type="text" name="email" value="<?php echo set_value('email'); ?>"  />
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="senha" class="control-label">Senha</label>
-                        <div class="controls">
-                            <input id="senha" type="password" name="senha" value="<?php echo set_value('senha'); ?>"  />
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="telefone" class="control-label">Telefone</label>
-                        <div class="controls">
-                            <input id="telefone" type="text" name="telefone" value="<?php echo set_value('telefone'); ?>"  />
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="celular" class="control-label">Celular</label>
-                        <div class="controls">
-                            <input id="celular" type="text" name="celular" value="<?php echo set_value('celular'); ?>"  />
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="dataAss" class="control-label">Data de Associação<span class="required">*</span></label>
-                        <div class="controls">
-                            <input id="dataAss" type="text" name="dataAss" value="<?php echo set_value('dataAss'); ?>"  />
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label  class="control-label">Situação*</label>
-                        <div class="controls">
-                            <select name="situacao" id="situacao">
-                                <option value="1">Ativo</option>
-                                <option value="0">Inativo</option>
-                            </select>
-                        </div>
-                    </div>
-
-
+                    
+                    <!--Tentar puxar infos de outros bancos de dados-->
+                    <!--
                     <div class="control-group">
                         <label  class="control-label">Área<span class="required">*</span></label>
                         <div class="controls">
@@ -135,7 +81,7 @@
                             </select>
                         </div>
                     </div>
-
+                    -->
                     <div class="form-actions">
                         <div class="span12">
                             <div class="span6 offset3">
@@ -162,35 +108,21 @@
            $('#formProjeto').validate({
             rules : {
                   nome:{ required: true},
-                  curso:{ required: true},
-                  cpf:{ required: true},
-                  telefone:{ required: true},
-                  email:{ required: true},
-                  senha:{ required: true},
-                  rua:{ required: true},
-                  numero:{ required: true},
-                  bairro:{ required: true},
-                  cidade:{ required: true},
-                  estado:{ required: true},
-                  celular:{ required: true}
-                  dataAss:{ required: true},
-
+                  cliente:{ required: true},
+                  area:{ required: true},
+                  preco:{ required: true},
+                  dataContrato:{ required: true},
+                  horas:{ required: true},
+                  dataEntrega:{ required: true},
             },
             messages: {
                   nome :{ required: 'Campo Requerido.'},
-                  rg:{ required: 'Campo Requerido.'},
-                  curso:{ required: 'Campo Requerido.'},
-                  cpf:{ required: 'Campo Requerido.'},
-                  telefone:{ required: 'Campo Requerido.'},
-                  email:{ required: 'Campo Requerido.'},
-                  senha:{ required: 'Campo Requerido.'},
-                  rua:{ required: 'Campo Requerido.'},
-                  numero:{ required: 'Campo Requerido.'},
-                  bairro:{ required: 'Campo Requerido.'},
-                  cidade:{ required: 'Campo Requerido.'},
-                  estado:{ required: 'Campo Requerido.'},
-                  celular:{ required: 'Campo Requerido.'}
-                  dataAss:{ required: 'Campo Requerido.'},
+                  cliente:{ required: 'Campo Requerido.'},
+                  area:{ required: 'Campo Requerido.'},
+                  preco:{ required: 'Campo Requerido.'},
+                  dataContrato:{ required: 'Campo Requerido.'},
+                  horas:{ required: 'Campo Requerido.'},
+                  dataEntrega:{ required: 'Campo Requerido.'},
 
             },
 

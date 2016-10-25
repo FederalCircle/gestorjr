@@ -369,5 +369,41 @@ $config = array('clientes' => array(array(
                                     'label'=>'usuarios_id',
                                     'rules'=>'trim|xss_clean|required'
                                 ))
+                ,
+                  'projetos' => array(array(
+                                    'field'=>'nome',
+                                    'label'=>'Nome',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'cliente',
+                                    'label'=>'Cliente',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'area',
+                                    'label'=>'Área',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'preco',
+                                    'label'=>'Preço',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'dataContrato',
+                                    'label'=>'Data do Contrato',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'horas',
+                                    'label'=>'Horas do Projeto',
+                                    'rules'=>'required|trim|xss_clean'
+                                ),
+                                array(
+                                    'field'=>'dataEntrega',
+                                    'label'=>'Data de Entrega',
+                                    'rules'=>'required|trim|xss_clean'
+                                ))
 		);
 			   
