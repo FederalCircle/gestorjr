@@ -84,26 +84,16 @@ class Projetos extends CI_Controller {
             $this->load->library('encrypt');     
             $data = array(
                 'nome' => set_value('nome'),
-                'rua' => set_value('descricao'),
-                'curso' => set_value('curso'),
-                'cpf'=> set_value('cpf'),
-                'rua'=> set_value('rua'),
-                'numero'=> set_value('numero'),
-                'bairro'=> set_value('bairro'),
-                'cidade'=> set_value('cidade'),
-                'estado'=> set_value('estado'),
-                'email'=> set_value('email'),
-                'senha'=> set_value('senha'),
-                'telefone'=> set_value('telefone'),
-                'celular'=> set_value('celular'),
-                'situacao'=> set_value('situacao'),
-//'dataAss' => $dataAss
-                'permissoes_id' => $this->input->post('permissoes_id'),
-                'dataAss' => set_value('dataAss'),
+                'cliente' => set_value('cliente'),
+                'area' => set_value('area'),
+                'preco'=> set_value('preco'),
+                'dataContrato'=> set_value('dataContrato'),
+                'horas'=> set_value('horas'),
+                'dataEntrega'=> set_value('dataEntrega'),
             );
 
             if ($this->projetos_model->add('projetos', $data) == TRUE) {
-                $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
+                $this->session->set_flashdata('success', 'Projeto adicionado com sucesso!');
                 redirect(base_url() . 'index.php/projetos');
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
@@ -125,18 +115,12 @@ function editar(){
         $this->load->library('form_validation');    
         $this->data['custom_error'] = '';
         $this->form_validation->set_rules('nome', 'Nome', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('curso', 'Curso', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('cpf', 'CPF', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('rua', 'Rua', 'trim|xss_clean');
-        $this->form_validation->set_rules('numero', 'Número', 'trim|xss_clean');
-        $this->form_validation->set_rules('bairro', 'Bairro', 'trim|xss_clean');
-        $this->form_validation->set_rules('cidade', 'Cidade', 'trim|xss_clean');
-        $this->form_validation->set_rules('estado', 'Estado', 'trim|xss_clean');
-        $this->form_validation->set_rules('email', 'Email', 'trim|xss_clean');
-        $this->form_validation->set_rules('telefone', 'Telefone', 'trim|xss_clean');
-        $this->form_validation->set_rules('dataAss', 'dataAss', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('situacao', 'Situação', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('permissoes_id', 'Permissão', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('cliente', 'Cliente', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('area', 'Área', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('preco', 'Preço', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('dataContrato', 'Data do Contrato', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('horas', 'Horas do Projeto', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('dataEntrega', 'Data de Entrega', 'trim|required|xss_clean');
 
         if ($this->form_validation->run() == false)
         {
