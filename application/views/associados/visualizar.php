@@ -38,7 +38,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align: right"><strong>Data de Associação</strong></td>
-                                                    <td><?php echo $result->dataAss //date('d/m/Y',  strtotime($result->dataAss)) ?></td>
+                                                    <td><?php echo date('d/m/Y',  strtotime($result->dataAss)) ?></td>
                                                 </tr>
                                             </tbody>
                                         </table>

@@ -372,7 +372,7 @@ CREATE TABLE IF NOT EXISTS `associados` (
   `telefone` VARCHAR(20) NOT NULL,
   `celular` VARCHAR(20) NULL DEFAULT NULL,
   `situacao` TINYINT(1) NOT NULL,
-  `dataAss` INT(8) NOT NULL,
+  `dataAss` DATE NULL DEFAULT NULL,
   `area` INT(11) NOT NULL,
   `permissoes_id` INT NOT NULL,
   PRIMARY KEY (`idAssociados`),
@@ -382,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `associados` (
     REFERENCES `permissoes` (`idPermissao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
+ENGINE = InnoDB,
 
 -- ----------------------------------------------------
 -- Table `projetos`

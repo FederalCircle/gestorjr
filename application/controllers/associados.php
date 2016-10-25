@@ -69,17 +69,29 @@ class Associados extends CI_Controller {
     }
 	
     function adicionar() {
-        if(!$this->permission->checkPermission($this->session->userdata('permissao'),'aServico')){
-           $this->session->set_flashdata('error','Você não tem permissão para adicionar serviços.');
+        
+        if(!$this->permission->checkPermission($this->session->userdata('permissao'),'aOs')){
+           $this->session->set_flashdata('error','Você não tem permissão para adicionar O.S.');
            redirect(base_url());
         }
 
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
-
+        
         if ($this->form_validation->run('associados') == false) {
-            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+           $this->data['custom_error'] = (validation_errors() ? true : false);
         } else {
+
+            $dataAss = $this->input->post('dataAss');
+
+            try {
+                
+                $dataAss = explode('/', $dataAss);
+                $dataAss = $dataAss[2].'-'.$dataAss[1].'-'.$dataAss[0];
+
+            } catch (Exception $e) {
+               $dataAss = date('d/m/y'); 
+            }
 
             $this->load->library('encrypt');     
             $data = array(
@@ -97,9 +109,9 @@ class Associados extends CI_Controller {
                 'telefone'=> set_value('telefone'),
                 'celular'=> set_value('celular'),
                 'situacao'=> set_value('situacao'),
-//'dataAss' => $dataAss
+                'dataAss' => $dataAss,
                 'permissoes_id' => $this->input->post('permissoes_id'),
-                'dataAss' => set_value('dataAss'),
+                //'dataAss' => set_value('dataAss'),
             );
 
             if ($this->associados_model->add('associados', $data) == TRUE) {
@@ -144,6 +156,16 @@ function editar(){
 
         } else
         { 
+            $dataAss = $this->input->post('dataAss');
+
+            try {
+                
+                $dataAss = explode('/', $dataAss);
+                $dataAss = $dataAss[2].'-'.$dataAss[1].'-'.$dataAss[0];
+
+            } catch (Exception $e) {
+               $dataAss = date('d/m/Y'); 
+            }
 
             if ($this->input->post('idAssociados') == 1 && $this->input->post('situacao') == 0)
             {
@@ -169,7 +191,7 @@ function editar(){
                         'senha' => $senha,
                         'telefone' => $this->input->post('telefone'),
                         'celular' => $this->input->post('celular'),
-                        'dataAss' => $this->input->post('dataAss'),
+                        'dataAss' => $dataAss,
                         'situacao' => $this->input->post('situacao'),
                         'permissoes_id' => $this->input->post('permissoes_id')
                 );
@@ -189,7 +211,7 @@ function editar(){
                         'email' => $this->input->post('email'),
                         'telefone' => $this->input->post('telefone'),
                         'celular' => $this->input->post('celular'),
-                        'dataAss' => $this->input->post('dataAss'),
+                        'dataAss' => $dataAss,
                         'situacao' => $this->input->post('situacao'),
                         'permissoes_id' => $this->input->post('permissoes_id')
                 );
@@ -200,8 +222,8 @@ function editar(){
             if ($this->associados_model->edit('associados',$data,'idAssociados',$this->input->post('idAssociados')) == TRUE)
             {
                 $this->session->set_flashdata('success','Usuário editado com sucesso!');
-                redirect(base_url().'index.php/associados/');//.$this->input->post('idAssociados'));
-            }
+                redirect(base_url().'index.php/associados/');
+                            }
             else
             {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro</p></div>';
