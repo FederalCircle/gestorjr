@@ -58,9 +58,8 @@ class Projetos extends CI_Controller {
 
         $this->pagination->initialize($config);     
 
-        /*$this->data['results'] = $this->projetos_model->get('projetos','idProjetos,nome,curso,cpf,rua,numero,bairro,cidade,estado,email,senha,telefone,celular,situacao,dataAss','',$config['per_page'],$this->uri->segment(3));
-       */
-        $this->data['results'] = $this->projetos_model->get($config['per_page'],$this->uri->segment(3));
+        $this->data['results'] = $this->projetos_model->get('projetos','idProjetos,nome,cliente,area,preco,dataContrato,horas,dataEntrega','',$config['per_page'],$this->uri->segment(3));
+        /*$this->data['results'] = $this->projetos_model->get($config['per_page'],$this->uri->segment(3));*/
         $this->data['view'] = 'projetos/projetos';
         $this->load->view('tema/topo',$this->data);
 

@@ -11,6 +11,7 @@ class Projetos_model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
+    /*
      function get($perpage=0,$start=0,$one=false){
         
         $this->db->from('projetos');
@@ -22,11 +23,9 @@ class Projetos_model extends CI_Model {
         
         $result =  !$one  ? $query->result() : $query->row();
         return $result;
-    }
-
-
+    }*/
     
-    /*function get($table,$fields,$where='',$perpage=0,$start=0,$one=false,$array='array'){
+    function get($table,$fields,$where='',$perpage=0,$start=0,$one=false,$array='array'){
         
         $this->db->select($fields);
         $this->db->from($table);
@@ -41,7 +40,7 @@ class Projetos_model extends CI_Model {
         $result =  !$one  ? $query->result() : $query->row();
         return $result;
     }
-*/
+
     function getById($id){
         $this->db->where('idProjetos',$id);
         $this->db->limit(1);
