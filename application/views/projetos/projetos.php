@@ -20,8 +20,8 @@ if(!$results){?>
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
-                        <th>Setor</th>
-                        <th>Curso</th>
+                        <th>Cliente</th>
+                        <th>Data do Contrato</th>
                         <th>Telefone</th>
                         <th></th>
                     </tr>
@@ -56,9 +56,9 @@ if(!$results){?>
         <tr>
         <th>#</th>
         <th>Nome</th>
-        <th>Setor</th>
-        <th>Curso</th>
-        <th>Telefone</th>
+        <th>Cliente</th>
+        <th>Data do Contrato</th>
+        <th>Horas</th>
         <th></th>
         </tr>
     </thead>
@@ -67,9 +67,9 @@ if(!$results){?>
             echo '<tr>';
             echo '<td>'.$r->idProjetos.'</td>';
             echo '<td>'.$r->nome.'</td>';
-            echo '<td>'.$r->permissao.'</td>';
-             echo '<td>'.$r->curso.'</td>';
-            echo '<td>'.$r->telefone.'</td>';
+            echo '<td>'.$r->cliente.'</td>';
+             echo '<td>'.$r->dataContrato.'</td>';
+            echo '<td>'.$r->horas.'</td>';
             echo '<td>
              <a href="'.base_url().'index.php/projetos/editar/'.$r->idProjetos.'" class="btn btn-info tip-top" title="Editar Usuário"><i class="icon-pencil icon-white"></i></a>';
             if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
