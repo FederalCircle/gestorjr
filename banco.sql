@@ -383,12 +383,14 @@ CREATE TABLE IF NOT EXISTS `associados` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
 
 -- ----------------------------------------------------
 -- Table `projetos`
 -- ----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `projetos` (
-  `idProjetos` INT(11) NOT NULL AUTO_INCREMENT,
+  `idProjetos` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(80) NOT NULL,
   `cliente`VARCHAR(80) NOT NULL,
   `area` VARCHAR(20) NOT NULL,
@@ -398,13 +400,13 @@ CREATE TABLE IF NOT EXISTS `projetos` (
   `dataEntrega` INT(8) NOT NULL,
   PRIMARY KEY (`idProjetos`)  )
 ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
 -- ----------------------------------------------------
 -- End Data Bases
 -- ----------------------------------------------------
 
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = latin1;
+
 
 
 
