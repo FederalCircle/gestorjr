@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="<?php echo base_url();?>js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery.validate.js"></script>
 <div class="row-fluid" style="margin-top:0">
     <div class="span12">
         <div class="widget-box">
@@ -14,9 +11,20 @@
                 <?php if ($custom_error != '') {
                     echo '<div class="alert alert-danger">' . $custom_error . '</div>';
                 } ?>
+                <div class="span12" id="divProdutosServicos" style=" margin-left: 0">
+                    <ul class="nav nav-tabs">
+                        <li class="active" id="tabDetalhes"><a href="#tab1" data-toggle="tab">Detalhes da OS</a></li>
+                        <li id="tabProdutos"><a href="#tab2" data-toggle="tab">Produtos</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+
+                            <div class="span12" id="divCadastrarOs">
+
                 <form action="<?php echo current_url(); ?>" id="formAssociados" method="post" class="form-horizontal" >
+                    <?php echo form_hidden('idAssociados',$result->idAssociados) ?>
                     <div class="control-group">
-                        <?php echo form_hidden('idAssociados',$result->idAssociados) ?>
+                        
                         <label for="nome" class="control-label">Nome<span class="required">*</span></label>
                         <div class="controls">
                             <input id="nome" type="text" name="nome" value="<?php echo $result->nome; ?>"  />
@@ -112,9 +120,9 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="dataAss" class="control-label">Data Associação<span class="required">*</span></label>
+                        <label for="dataAss" class="control-label">dataAss<span class="required">*</span></label>
                         <div class="controls">
-                        <input id="dataAss" class="datepicker" type="text" name="dataAss" value="<?php echo date('d/m/Y', strtotime($result->dataAss)); ?>"  />
+                            <input id="dataAss" type="text" name="dataAss" value="<?php echo $result->dataAss; ?>"  />
                         </div>
                     </div>
                     <div class="control-group">
@@ -154,31 +162,114 @@
                 </form>
             </div>
         </div>
+
+
+             <div class="tab-pane" id="tab2">
+
+                <div class="span12 well" style="padding: 1%; margin-left: 0">
+               <!-- <form id="formProdutos" <?php if($result->desempenho_id== NULL){?>action="<?php echo base_url() ?>index.php/associados/adicionarDesempenho"<?php. }else {?> action="<?php echo base_url() ?>index.php/associados"<?php }?> method="post">
+                 -->                   <div class="span8">
+                                        <input type="hidden" name="idProduto" id="idProduto" />
+                                        <input type="hidden" name="idOsProduto" id="idOsProduto" value="<?php //echo $result->idOs?>" />
+                                        <input type="hidden" name="estoque" id="estoque" value=""/>
+                                        <input type="hidden" name="preco" id="preco" value=""/>
+                                        <label for="">Produto</label>
+                                        <input type="text" class="span12" name="produto" id="produto" placeholder="Digite o nome do produto" />
+                                    </div>
+                                    <div class="span2">
+                                        <label for="">Quantidade</label>
+                                        <input type="text" placeholder="Quantidade" id="quantidade" name="quantidade" class="span12" />
+                                    </div>
+                                    <div class="span2">
+                                        <label for="">.</label>
+        <?php if($result->desempenho_id== NULL){ echo '<a href="'.base_url().'index.php/associados/adicionarDesempenho/'.$result->idAssociados.'" class="btn btn-success"  associado="'.$result->idAssociados.'"><i class="icon-plus icon-white">Adicionar</i></a>'; }else{  echo '<a href="#" class="btn btn-success"><i class="icon-plus icon-white">Adicionar</i></a>'; }?>  
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="span12" id="divProdutos" style="margin-left: 0">
+                                <table class="table table-bordered" id="tblProdutos">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Quantidade</th>
+                                            <th>Ações</th>
+                                            <th>Sub-total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php/*
+                                        $total = 0;
+                                        foreach ($produtos as $p) {
+                                            
+                                            $total = $total + $p->subTotal;
+                                            echo '<tr>';
+                                            echo '<td>'.$p->descricao.'</td>';
+                                            echo '<td>'.$p->quantidade.'</td>';
+                                            echo '<td><a href="" idAcao="'.$p->idProdutos_os.'" prodAcao="'.$p->idProdutos.'" quantAcao="'.$p->quantidade.'" title="Excluir Produto" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td>';
+                                            echo '<td>R$ '.number_format($p->subTotal,2,',','.').'</td>';
+                                            echo '</tr>';
+                                        }*/?>
+                                       
+                                        <tr>
+                                            <td colspan="3" style="text-align: right"><strong>Total:</strong></td>
+                                            <td><strong>R$ <?php echo number_format($total,2,',','.');?><input type="hidden" id="total-venda" value="<?php echo number_format($total,2); ?>"></strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+              
+
+                        </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+            </div>
+        </div>
     </div>
-</div>
-
-
 
 
 <script  src="<?php echo base_url()?>js/jquery.validate.js"></script>
-<script src="<?php echo base_url();?>js/maskmoney.js"></script>
 <script type="text/javascript">
       $(document).ready(function(){
-        $(".money").maskMoney();
+<<<<<<< HEAD
+
+    $(document).on('click', 'a', function(event) {
+        
+        var associado = $(this).attr('associado');
+        $('#idAssociado').val(associado);
+
+    });
+
+       $(".money").maskMoney();
+=======
+>>>>>>> parent of 9f81a84... atualizacoes modulo Associados
 
            $('#formAssociado').validate({
             rules : {
                   nome:{ required: true},
                   curso:{ required: true},
                   cpf:{ required: true},
-                  dataAss:{ required: true},
-
+                  telefone:{ required: true},
+                  email:{ required: true},
+                  rua:{ required: true},
+                  numero:{ required: true},
+                  bairro:{ required: true},
+                  cidade:{ required: true},
+                  estado:{ required: true},
+                  dataAss:{ required: true}
             },
             messages: {
                   nome :{ required: 'Campo Requerido.'},
-                  cpf:{ required: 'Campo Requerido.'},
-                  dataAss:{ required: 'Campo Requerido.'},
-                  curso:{ required: 'Campo Requerido'},
+                  rg:{ required: 'Campo Requerido.'},
+                  curso:{ required: 'Campo Requerido.'},
+                  telefone:{ required: 'Campo Requerido.'},
+                  email:{ required: 'Campo Requerido.'},
+                  rua:{ required: 'Campo Requerido.'},
+                  numero:{ required: 'Campo Requerido.'},
+                  bairro:{ required: 'Campo Requerido.'},
+                  cidade:{ required: 'Campo Requerido.'},
+                  estado:{ required: 'Campo Requerido.'},
+                  dataAss:{ required: 'Campo Requerido.'}
 
             },
 
@@ -192,9 +283,8 @@
                 $(element).parents('.control-group').addClass('success');
             }
            });
-            $(".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+
       });
 </script>
-
 
 

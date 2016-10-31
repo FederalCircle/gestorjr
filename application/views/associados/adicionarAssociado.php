@@ -1,8 +1,3 @@
-
-<link rel="stylesheet" href="<?php echo base_url();?>js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/jquery.validate.js"></script>
-
 <div class="row-fluid" style="margin-top:0">
     <div class="span12">
         <div class="widget-box">
@@ -113,10 +108,12 @@
                     </div>
 
                     <div class="control-group">
-                          <label for="dataAss" class="control-label">Data Associação<span class="required">*</span></label>
-                          <div class="controls">
-                          <input id="dataAss" class="datepicker" type="text" name="dataAss" value=""  /></div>
+                        <label for="dataAss" class="control-label">Data de Associação<span class="required">*</span></label>
+                        <div class="controls">
+                            <input id="dataAss" type="text" name="dataAss" value="<?php echo set_value('dataAss'); ?>"  />
+                        </div>
                     </div>
+
                     <div class="control-group">
                         <label  class="control-label">Situação*</label>
                         <div class="controls">
@@ -167,14 +164,33 @@
                   nome:{ required: true},
                   curso:{ required: true},
                   cpf:{ required: true},
+                  telefone:{ required: true},
+                  email:{ required: true},
+                  senha:{ required: true},
+                  rua:{ required: true},
+                  numero:{ required: true},
+                  bairro:{ required: true},
+                  cidade:{ required: true},
+                  estado:{ required: true},
+                  celular:{ required: true}
                   dataAss:{ required: true},
 
             },
             messages: {
                   nome :{ required: 'Campo Requerido.'},
+                  rg:{ required: 'Campo Requerido.'},
+                  curso:{ required: 'Campo Requerido.'},
                   cpf:{ required: 'Campo Requerido.'},
+                  telefone:{ required: 'Campo Requerido.'},
+                  email:{ required: 'Campo Requerido.'},
+                  senha:{ required: 'Campo Requerido.'},
+                  rua:{ required: 'Campo Requerido.'},
+                  numero:{ required: 'Campo Requerido.'},
+                  bairro:{ required: 'Campo Requerido.'},
+                  cidade:{ required: 'Campo Requerido.'},
+                  estado:{ required: 'Campo Requerido.'},
+                  celular:{ required: 'Campo Requerido.'}
                   dataAss:{ required: 'Campo Requerido.'},
-                  curso:{ required: 'Campo Requerido'},
 
             },
 
@@ -188,7 +204,7 @@
                 $(element).parents('.control-group').addClass('success');
             }
            });
-            $(".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+
       });
 </script>
 

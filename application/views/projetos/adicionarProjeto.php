@@ -136,7 +136,7 @@
                 $(element).parents('.control-group').addClass('success');
             }
            });
-           
+
       });
 </script>
 

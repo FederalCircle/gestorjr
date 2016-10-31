@@ -345,7 +345,7 @@
     <div class="span12" style="margin-left: 0"> 
       <div class="span4" style="margin-left: 0">
         <label for="recebido">Recebido?</label>
-        &nbsp &nbsp &nbsp &nbsp <input  id="recebido" type="checkbox" name="recebido" value="1" /> 
+        <input  id="recebido" type="checkbox" name="recebido" value="1" /> 
       </div>
       <div id="divRecebimento" class="span8" style=" display: none">
         <div class="span6">

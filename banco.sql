@@ -372,17 +372,28 @@ CREATE TABLE IF NOT EXISTS `associados` (
   `telefone` VARCHAR(20) NOT NULL,
   `celular` VARCHAR(20) NULL DEFAULT NULL,
   `situacao` TINYINT(1) NOT NULL,
-  `dataAss` DATE NULL DEFAULT NULL,
+  `dataAss` INT(8) NOT NULL,
   `area` INT(11) NOT NULL,
   `permissoes_id` INT NOT NULL,
+  `desempenho_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idAssociados`),
   INDEX `fk_associados_permissoes1_idx` (`permissoes_id` ASC),
+  INDEX `fk_associados_desempenho1_idx` (`desempenho_id` ASC),
   CONSTRAINT `fk_associados_permissoes1`
     FOREIGN KEY (`permissoes_id`)
     REFERENCES `permissoes` (`idPermissao`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+CONSTRAINT `fk_associados_desempenho1`
+    FOREIGN KEY (`desempenho_id`)
+    REFERENCES `desempenho` (`idDesempenho`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB,
+<<<<<<< HEAD
+ENGINE = InnoDB;
+=======
+ENGINE = InnoDB
+>>>>>>> parent of 9f81a84... atualizacoes modulo Associados
 
 -- ----------------------------------------------------
 -- Table `projetos`
@@ -397,11 +408,30 @@ CREATE TABLE IF NOT EXISTS `projetos` (
   `horas` INT(10) NOT NULL,
   `dataEntrega` INT(8) NOT NULL,
   PRIMARY KEY (`idProjetos`)  )
-ENGINE = InnoDB
+ENGINE = InnoDB;
 
 -- ----------------------------------------------------
 -- End Data Bases
 -- ----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `desempenho` (
+  `idDesempenho` INT(11) NOT NULL AUTO_INCREMENT,
+    `status` VARCHAR(15) NULL DEFAULT NULL,
+    `responsavel_id`  INT (11) NULL DEFAULT NULL,
+    `dataInicial` DATE NULL DEFAULT NULL,
+    `dataDeslig` DATE NULL DEFAULT NULL,
+    `dpSelecao` TEXT NULL DEFAULT NULL ,
+    `dpTrainee` TEXT NULL DEFAULT NULL,
+    `observacoes` TEXT NULL DEFAULT NULL,
+    `notaDesligamento` TEXT NULL DEFAULT NULL,
+    PRIMARY KEY (`idDesempenho`),
+  INDEX `fk_desempenho_associados1` (`responsavel_id` ASC),
+    CONSTRAINT `fk_desempenho_associados1`
+    FOREIGN KEY (`responsavel_id`)
+    REFERENCES `associados` (`idAssociados`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+    ENGINE = INNODB
+
 
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = latin1;
