@@ -22,7 +22,7 @@
 
                             <div class="span12" id="divCadastrarOs">
                                 <form action="<?php echo current_url(); ?>" method="post" id="formAssociados" class="form-horizontal">
-                                    <?php echo form_hidden('idAssociados',$result->idAssociados) ?>
+                                    
                                     <div class="span6" style="padding: 1%; margin-left: 0">
                                         
                                         <div class="span12">

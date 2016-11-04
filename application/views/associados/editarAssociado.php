@@ -197,18 +197,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php/*
+                                        <?php
                                         $total = 0;
-                                        foreach ($produtos as $p) {
+                                        foreach ($desempenho as $p) {
                                             
                                             $total = $total + $p->subTotal;
                                             echo '<tr>';
-                                            echo '<td>'.$p->descricao.'</td>';
-                                            echo '<td>'.$p->quantidade.'</td>';
-                                            echo '<td><a href="" idAcao="'.$p->idProdutos_os.'" prodAcao="'.$p->idProdutos.'" quantAcao="'.$p->quantidade.'" title="Excluir Produto" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td>';
-                                            echo '<td>R$ '.number_format($p->subTotal,2,',','.').'</td>';
+                                            //echo '<td>'.$p->descricao.'</td>';
+                                            echo '<td>'.$p->dpSelecao.'</td>';
+                                           // echo '<td><a href="" idAcao="'.$p->idProdutos_os.'" prodAcao="'.$p->idProdutos.'" quantAcao="'.$p->quantidade.'" title="Excluir Produto" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td>';
+                                            //echo '<td>R$ '.number_format($p->subTotal,2,',','.').'</td>';
                                             echo '</tr>';
-                                        }*/?>
+                                        }?>
                                        
                                         <tr>
                                             <td colspan="3" style="text-align: right"><strong>Total:</strong></td>
