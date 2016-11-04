@@ -29,7 +29,7 @@
                         <div class="controls">
                         <select name="area" id="area">
                                 <option value=""></option>
-                                <option value="Eng. Civil">Eng. civil</option>
+                                <option value="Eng. Civil">Eng. Civil</option>
                                 <option value="Eng. de Automação Industrial">Eng. de Automação Industrial</option>
                                 <option value="Eng. da Computação">Eng. de Computação</option>
                                 <option value="Eng. de Telecomunicações">Eng. de Telecomunicações</option>

@@ -389,17 +389,13 @@ CONSTRAINT `fk_associados_desempenho1`
     REFERENCES `desempenho` (`idDesempenho`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-<<<<<<< HEAD
 ENGINE = InnoDB;
-=======
-ENGINE = InnoDB
->>>>>>> parent of 9f81a84... atualizacoes modulo Associados
-
+AUTO_INCREMENT = 3
 -- ----------------------------------------------------
 -- Table `projetos`
 -- ----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `projetos` (
-  `idProjetos` INT(11) NOT NULL AUTO_INCREMENT,
+  `idProjetos` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(80) NOT NULL,
   `cliente`VARCHAR(80) NOT NULL,
   `area` VARCHAR(20) NOT NULL,
@@ -409,7 +405,7 @@ CREATE TABLE IF NOT EXISTS `projetos` (
   `dataEntrega` INT(8) NOT NULL,
   PRIMARY KEY (`idProjetos`)  )
 ENGINE = InnoDB;
-
+DEFAULT CHARACTER SET = latin1;
 -- ----------------------------------------------------
 -- End Data Bases
 -- ----------------------------------------------------
@@ -433,8 +429,7 @@ CREATE TABLE IF NOT EXISTS `desempenho` (
     ENGINE = INNODB
 
 
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = latin1;
+
 
 
 
