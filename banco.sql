@@ -355,6 +355,36 @@ CREATE  TABLE IF NOT EXISTS `emitente` (
 ENGINE = InnoDB;
 
 -- ----------------------------------------------------
+-- Table `desempenho`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `desempenho` (
+  `idDesempenho` INT(11) NOT NULL AUTO_INCREMENT,
+    `status` VARCHAR(15) NULL DEFAULT NULL,
+    `responsavel_id`  INT (11) NOT NULL,
+    `dataInicial` DATE NULL DEFAULT NULL,
+    `dataDeslig` DATE NULL DEFAULT NULL,
+    `dpSelecao` TEXT NULL DEFAULT NULL ,
+    `dpTrainee` TEXT NULL DEFAULT NULL,
+    `observacoes` TEXT NULL DEFAULT NULL,
+    `notaDesligamento` TEXT NULL DEFAULT NULL,
+    `associados_id` INT NOT NULL,
+    PRIMARY KEY (`idDesempenho`),
+  INDEX `fk_desempenho_associados1_idx` (`responsavel_id` ASC),
+    CONSTRAINT `fk_desempenho_associados1`
+      FOREIGN KEY (`responsavel_id`)
+      REFERENCES `associados` (`idAssociados`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION,
+  INDEX `fk_desempenho_associados2_idx` (`associados_id` ASC),
+    CONSTRAINT `fk_desempenho_associados2`
+      FOREIGN KEY (`associados_id`)
+      REFERENCES `associados` (`idAssociados`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION)
+ENGINE = INNODB;
+
+-- ----------------------------------------------------
 -- Table `associados`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `associados` (
@@ -403,47 +433,12 @@ DEFAULT CHARACTER SET = latin1;
 -- ----------------------------------------------------
 -- End Data Bases
 -- ----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `desempenho` (
-  `idDesempenho` INT(11) NOT NULL AUTO_INCREMENT,
-    `status` VARCHAR(15) NULL DEFAULT NULL,
-    `responsavel_id`  INT (11) NOT NULL,
-    `dataInicial` DATE NULL DEFAULT NULL,
-    `dataDeslig` DATE NULL DEFAULT NULL,
-    `dpSelecao` TEXT NULL DEFAULT NULL ,
-    `dpTrainee` TEXT NULL DEFAULT NULL,
-    `observacoes` TEXT NULL DEFAULT NULL,
-    `notaDesligamento` TEXT NULL DEFAULT NULL,
-    `associados_id` INT NOT NULL,
-    PRIMARY KEY (`idDesempenho`),
-  INDEX `fk_desempenho_associados1_idx` (`responsavel_id` ASC),
-    CONSTRAINT `fk_desempenho_associados1`
-    FOREIGN KEY (`responsavel_id`)
-    REFERENCES `associados` (`idAssociados`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  INDEX `fk_desempenho_associados2_idx` (`associados_id` ASC),
-    CONSTRAINT `fk_desempenho_associados2`
-    FOREIGN KEY (`associados_id`)
-    REFERENCES `associados` (`idAssociados`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-    ENGINE = INNODB
-
-
-
-
-
 
 INSERT INTO `permissoes` (`idPermissao`, `nome`, `permissoes`, `situacao`, `data`) VALUES
 (1, 'Administrador', 'a:38:{s:8:"aCliente";s:1:"1";s:8:"eCliente";s:1:"1";s:8:"dCliente";s:1:"1";s:8:"vCliente";s:1:"1";s:8:"aProduto";s:1:"1";s:8:"eProduto";s:1:"1";s:8:"dProduto";s:1:"1";s:8:"vProduto";s:1:"1";s:8:"aServico";s:1:"1";s:8:"eServico";s:1:"1";s:8:"dServico";s:1:"1";s:8:"vServico";s:1:"1";s:3:"aOs";s:1:"1";s:3:"eOs";s:1:"1";s:3:"dOs";s:1:"1";s:3:"vOs";s:1:"1";s:6:"aVenda";s:1:"1";s:6:"eVenda";s:1:"1";s:6:"dVenda";s:1:"1";s:6:"vVenda";s:1:"1";s:8:"aArquivo";s:1:"1";s:8:"eArquivo";s:1:"1";s:8:"dArquivo";s:1:"1";s:8:"vArquivo";s:1:"1";s:11:"aLancamento";s:1:"1";s:11:"eLancamento";s:1:"1";s:11:"dLancamento";s:1:"1";s:11:"vLancamento";s:1:"1";s:8:"cUsuario";s:1:"1";s:9:"cEmitente";s:1:"1";s:10:"cPermissao";s:1:"1";s:7:"cBackup";s:1:"1";s:8:"rCliente";s:1:"1";s:8:"rProduto";s:1:"1";s:8:"rServico";s:1:"1";s:3:"rOs";s:1:"1";s:6:"rVenda";s:1:"1";s:11:"rFinanceiro";s:1:"1";}', 1, '2014-09-03');
 
-
-
-
-
 INSERT INTO `usuarios` (`idUsuarios`, `nome`, `rg`, `cpf`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `email`, `senha`, `telefone`, `celular`, `situacao`, `dataCadastro`, `nivel`, `permissoes_id`) VALUES
 (1, 'admin', 'MG-25.502.560', '600.021.520-87', 'Rua Acima', '12', 'Alvorada', 'Teste', 'MG', 'admin@admin.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '0000-0000', '', 1, '2013-11-22', 1, 1);
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
