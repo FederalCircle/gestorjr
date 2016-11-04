@@ -40,7 +40,7 @@ class Os_model extends CI_Model {
     }
 
     public function getProdutos($id = null){
-        
+                
         $this->db->select('produtos_os.*, produtos.*');
         $this->db->from('produtos_os');
         $this->db->join('produtos','produtos.idProdutos = produtos_os.produtos_id');

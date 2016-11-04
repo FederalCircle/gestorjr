@@ -375,6 +375,7 @@ CREATE TABLE IF NOT EXISTS `associados` (
   `dataAss` INT(8) NOT NULL,
   `area` INT(11) NOT NULL,
   `permissoes_id` INT NOT NULL,
+  `desempenho_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idAssociados`),
   INDEX `fk_associados_permissoes1_idx` (`permissoes_id` ASC),
   CONSTRAINT `fk_associados_permissoes1`
@@ -383,9 +384,7 @@ CREATE TABLE IF NOT EXISTS `associados` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = latin1;
-
+AUTO_INCREMENT = 3;
 -- ----------------------------------------------------
 -- Table `projetos`
 -- ----------------------------------------------------
@@ -401,10 +400,35 @@ CREATE TABLE IF NOT EXISTS `projetos` (
   PRIMARY KEY (`idProjetos`)  )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
-
 -- ----------------------------------------------------
 -- End Data Bases
 -- ----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `desempenho` (
+  `idDesempenho` INT(11) NOT NULL AUTO_INCREMENT,
+    `status` VARCHAR(15) NULL DEFAULT NULL,
+    `responsavel_id`  INT (11) NOT NULL,
+    `dataInicial` DATE NULL DEFAULT NULL,
+    `dataDeslig` DATE NULL DEFAULT NULL,
+    `dpSelecao` TEXT NULL DEFAULT NULL ,
+    `dpTrainee` TEXT NULL DEFAULT NULL,
+    `observacoes` TEXT NULL DEFAULT NULL,
+    `notaDesligamento` TEXT NULL DEFAULT NULL,
+    `associados_id` INT NOT NULL,
+    PRIMARY KEY (`idDesempenho`),
+  INDEX `fk_desempenho_associados1_idx` (`responsavel_id` ASC),
+    CONSTRAINT `fk_desempenho_associados1`
+    FOREIGN KEY (`responsavel_id`)
+    REFERENCES `associados` (`idAssociados`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  INDEX `fk_desempenho_associados2_idx` (`associados_id` ASC),
+    CONSTRAINT `fk_desempenho_associados2`
+    FOREIGN KEY (`associados_id`)
+    REFERENCES `associados` (`idAssociados`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+    ENGINE = INNODB
+
 
 
 

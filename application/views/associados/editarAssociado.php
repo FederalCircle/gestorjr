@@ -11,9 +11,20 @@
                 <?php if ($custom_error != '') {
                     echo '<div class="alert alert-danger">' . $custom_error . '</div>';
                 } ?>
+                <div class="span12" id="divProdutosServicos" style=" margin-left: 0">
+                    <ul class="nav nav-tabs">
+                        <li class="active" id="tabDetalhes"><a href="#tab1" data-toggle="tab">Detalhes da OS</a></li>
+                        <li id="tabProdutos"><a href="#tab2" data-toggle="tab">Produtos</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+
+                            <div class="span12" id="divCadastrarOs">
+
                 <form action="<?php echo current_url(); ?>" id="formAssociados" method="post" class="form-horizontal" >
+                    <?php echo form_hidden('idAssociados',$result->idAssociados) ?>
                     <div class="control-group">
-                        <?php echo form_hidden('idAssociados',$result->idAssociados) ?>
+                        
                         <label for="nome" class="control-label">Nome<span class="required">*</span></label>
                         <div class="controls">
                             <input id="nome" type="text" name="nome" value="<?php echo $result->nome; ?>"  />
@@ -151,15 +162,107 @@
                 </form>
             </div>
         </div>
+
+
+             <div class="tab-pane" id="tab2">
+
+                <div class="span12 well" style="padding: 1%; margin-left: 0">
+               <!-- <form id="formProdutos" <?php if($result->desempenho_id== NULL){?>action="<?php echo base_url() ?>index.php/associados/adicionarDesempenho"<?php. }else {?> action="<?php echo base_url() ?>index.php/associados"<?php }?> method="post">
+                 -->                   <div class="span8">
+                                        <input type="hidden" name="idProduto" id="idProduto" />
+                                        <input type="hidden" name="idOsProduto" id="idOsProduto" value="<?php //echo $result->idOs?>" />
+                                        <input type="hidden" name="estoque" id="estoque" value=""/>
+                                        <input type="hidden" name="preco" id="preco" value=""/>
+                                        <label for="">Produto</label>
+                                        <input type="text" class="span12" name="produto" id="produto" placeholder="Digite o nome do produto" />
+                                    </div>
+                                    <div class="span2">
+                                        <label for="">Quantidade</label>
+                                        <input type="text" placeholder="Quantidade" id="quantidade" name="quantidade" class="span12" />
+                                    </div>
+                                    <div class="span2">
+                                        <label for="">.</label>
+        <?php if(!$desempenho){ echo '<a href="'.base_url().'index.php/associados/adicionarDesempenho/'.$result->idAssociados.'" class="btn btn-success"  associado="'.$result->idAssociados.'"><i class="icon-plus icon-white">Adicionar</i></a>'; }else{  echo '<a href="#" class="btn btn-success"><i class="icon-plus icon-white">Adicionar</i></a>'; }?>  
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="span12" id="divProdutos" style="margin-left: 0">
+                                <table class="table table-bordered" id="tblProdutos">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Quantidade</th>
+                                            <th>Ações</th>
+                                            <th>Sub-total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $total = 0;
+                                        if($desempenho){
+                                            echo '<tr>';
+                                            echo '<td>'.$desempenho->status.'</td>';
+                                            echo '<td>'.$desempenho->responsavel_id.'</td>';
+                                            echo '<td>';
+                                    if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
+                echo '<a href="#modal-excluir" role="button" data-toggle="modal" desempenho ="'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Associado"><i class="icon-remove icon-white"></i></a>'; 
+            
+            }
+                                            echo '</tr>';
+                                        }?>
+                                       
+                                        <tr>
+                                            <td colspan="3" style="text-align: right"><strong>Total:</strong></td>
+                                            <td><strong>R$ <?php echo number_format($total,2,',','.');?><input type="hidden" id="total-venda" value="<?php echo number_format($total,2); ?>"></strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+              
+
+                        </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+            </div>
+        </div>
     </div>
+
+ 
+<!-- Modal -->
+<div id="modal-excluir" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <form action="<?php echo base_url() ?>index.php/associados/excluirDesempenho" method="post" >
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">Excluir Associados</h5>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="idAssociado" name="idAssociado" value="" />
+    <input type="hidden" id="idDesempenho" name="id" value="" />
+    <h5 style="text-align: center">Deseja realmente excluir este cliente e os dados associados a ele (OS, Vendas, Receitas)?</h5>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+    <button class="btn btn-danger">Excluir</button>
+  </div>
+  </form>
 </div>
-
-
 
 
 <script  src="<?php echo base_url()?>js/jquery.validate.js"></script>
 <script type="text/javascript">
       $(document).ready(function(){
+    $(document).on('click', 'a', function(event) {
+        
+        var associado = $(this).attr('associado');
+        var desempenho =$(this).attr('desempenho');
+        $('#idAssociado').val(associado);
+        $('#idDesempenho').val(desempenho);
+
+    });
+        
+
+       $(".money").maskMoney();
 
            $('#formAssociado').validate({
             rules : {

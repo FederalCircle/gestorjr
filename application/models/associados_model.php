@@ -24,30 +24,30 @@ class Associados_model extends CI_Model {
         return $result;
     }
 
-
-    
-    /*function get($table,$fields,$where='',$perpage=0,$start=0,$one=false,$array='array'){
-        
-        $this->db->select($fields);
-        $this->db->from($table);
-        $this->db->order_by('idAssociados','desc');
-        $this->db->limit($perpage,$start);
-        if($where){
-            $this->db->where($where);
-        }
-        
-        $query = $this->db->get();
-        
-        $result =  !$one  ? $query->result() : $query->row();
-        return $result;
-    }
-*/
+     function DesempenhogetById($id){
+        $this->db->where('associados_id',$id);
+        $this->db->limit(1);
+        return $this->db->get('desempenho')->row();
+      }
     function getById($id){
         $this->db->where('idAssociados',$id);
         $this->db->limit(1);
         return $this->db->get('associados')->row();
     }
     
+     function addDesempenho($table,$data,$returnId = false){
+
+        $this->db->insert($table, $data);         
+        if ($this->db->affected_rows() == '1')
+        {
+                        if($returnId == true){
+                            return $this->db->insert_id($table);
+                        }
+            return TRUE;
+        }
+        
+        return FALSE;       
+    }
     function add($table,$data){
         $this->db->insert($table, $data);         
         if ($this->db->affected_rows() == '1')
@@ -84,4 +84,18 @@ class Associados_model extends CI_Model {
 	function count($table){
 		return $this->db->count_all($table);
 	}
+     public function autoCompleteAssociados($q){
+
+        $this->db->select('*');
+        $this->db->limit(5);
+        $this->db->like('nome', $q);
+        $this->db->where('situacao',1);
+        $query = $this->db->get('associados');
+        if($query->num_rows > 0){
+            foreach ($query->result_array() as $row){
+                $row_set[] = array('label'=>$row['nome'],'id'=>$row['idAssociados']);
+            }
+            echo json_encode($row_set);
+        }
+    }
 }

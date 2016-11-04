@@ -19,12 +19,12 @@ class Associados extends CI_Controller {
         $this->load->model('associados_model', '', TRUE);
         $this->data['menuAssociados'] = 'Associados';
     }
-	
-	function index(){
-		$this->gerenciar();
-	}
+    
+    function index(){
+        $this->gerenciar();
+    }
 
-	function gerenciar(){
+    function gerenciar(){
         
         if(!$this->permission->checkPermission($this->session->userdata('permissao'),'vServico')){
            $this->session->set_flashdata('error','Você não tem permissão para visualizar serviços.');
@@ -56,30 +56,42 @@ class Associados extends CI_Controller {
         $config['last_tag_open'] = '<li>';
         $config['last_tag_close'] = '</li>';
 
-        $this->pagination->initialize($config); 	
+        $this->pagination->initialize($config);     
 
-		/*$this->data['results'] = $this->associados_model->get('associados','idAssociados,nome,curso,cpf,rua,numero,bairro,cidade,estado,email,senha,telefone,celular,situacao,dataAss','',$config['per_page'],$this->uri->segment(3));
+        /*$this->data['results'] = $this->associados_model->get('associados','idAssociados,nome,curso,cpf,rua,numero,bairro,cidade,estado,email,senha,telefone,celular,situacao,dataAss','',$config['per_page'],$this->uri->segment(3));
        */
         $this->data['results'] = $this->associados_model->get($config['per_page'],$this->uri->segment(3));
-	    $this->data['view'] = 'associados/associados';
-       	$this->load->view('tema/topo',$this->data);
+        $this->data['view'] = 'associados/associados';
+        $this->load->view('tema/topo',$this->data);
 
        
-		
+        
     }
-	
+    
     function adicionar() {
-        if(!$this->permission->checkPermission($this->session->userdata('permissao'),'aServico')){
-           $this->session->set_flashdata('error','Você não tem permissão para adicionar serviços.');
+        
+        if(!$this->permission->checkPermission($this->session->userdata('permissao'),'aOs')){
+           $this->session->set_flashdata('error','Você não tem permissão para adicionar O.S.');
            redirect(base_url());
         }
 
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
-
+        
         if ($this->form_validation->run('associados') == false) {
-            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+           $this->data['custom_error'] = (validation_errors() ? true : false);
         } else {
+
+            $dataAss = $this->input->post('dataAss');
+
+            try {
+                
+                $dataAss = explode('/', $dataAss);
+                $dataAss = $dataAss[2].'-'.$dataAss[1].'-'.$dataAss[0];
+
+            } catch (Exception $e) {
+               $dataAss = date('d/m/y'); 
+            }
 
             $this->load->library('encrypt');     
             $data = array(
@@ -97,9 +109,9 @@ class Associados extends CI_Controller {
                 'telefone'=> set_value('telefone'),
                 'celular'=> set_value('celular'),
                 'situacao'=> set_value('situacao'),
-//'dataAss' => $dataAss
+                'dataAss' => $dataAss,
                 'permissoes_id' => $this->input->post('permissoes_id'),
-                'dataAss' => set_value('dataAss'),
+                //'dataAss' => set_value('dataAss'),
             );
 
             if ($this->associados_model->add('associados', $data) == TRUE) {
@@ -144,6 +156,16 @@ function editar(){
 
         } else
         { 
+            $dataAss = $this->input->post('dataAss');
+
+            try {
+                
+                $dataAss = explode('/', $dataAss);
+                $dataAss = $dataAss[2].'-'.$dataAss[1].'-'.$dataAss[0];
+
+            } catch (Exception $e) {
+               $dataAss = date('d/m/Y'); 
+            }
 
             if ($this->input->post('idAssociados') == 1 && $this->input->post('situacao') == 0)
             {
@@ -169,7 +191,7 @@ function editar(){
                         'senha' => $senha,
                         'telefone' => $this->input->post('telefone'),
                         'celular' => $this->input->post('celular'),
-                        'dataAss' => $this->input->post('dataAss'),
+                        'dataAss' => $dataAss,
                         'situacao' => $this->input->post('situacao'),
                         'permissoes_id' => $this->input->post('permissoes_id')
                 );
@@ -189,7 +211,7 @@ function editar(){
                         'email' => $this->input->post('email'),
                         'telefone' => $this->input->post('telefone'),
                         'celular' => $this->input->post('celular'),
-                        'dataAss' => $this->input->post('dataAss'),
+                        'dataAss' => $dataAss,
                         'situacao' => $this->input->post('situacao'),
                         'permissoes_id' => $this->input->post('permissoes_id')
                 );
@@ -200,15 +222,15 @@ function editar(){
             if ($this->associados_model->edit('associados',$data,'idAssociados',$this->input->post('idAssociados')) == TRUE)
             {
                 $this->session->set_flashdata('success','Usuário editado com sucesso!');
-                redirect(base_url().'index.php/associados/');//.$this->input->post('idAssociados'));
-            }
+                redirect(base_url().'index.php/associados/');
+                            }
             else
             {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro</p></div>';
 
             }
         }
-
+        $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
         $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
         $this->load->model('permissoes_model');
         $this->data['permissoes'] = $this->permissoes_model->getActive('permissoes','permissoes.idPermissao,permissoes.nome'); 
@@ -231,18 +253,84 @@ function editar(){
         }
 
         $this->data['custom_error'] = '';
+        $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
         $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
-        //$this->data['results'] = $this->associados_model->getOsByCliente($this->uri->segment(3));
         $this->data['view'] = 'associados/visualizar';
         $this->load->view('tema/topo', $this->data);
 
         
     }
-/*
-            $ID =  $this->uri->segment(3);
-            $this->associados_model->delete('associados','idAssociados',$ID);             
-            redirect(base_url().'index.php/associados/gerenciar/');
-    }*/
+    public function autoCompleteAssociados(){
+
+        if (isset($_GET['term'])){
+            $q = strtolower($_GET['term']);
+            $this->associados_model->autoCompleteAssociados($q);
+        }
+
+    }
+     function adicionarDesempenho() {
+         if(!$this->permission->checkPermission($this->session->userdata('permissao'),'aOs')){
+           $this->session->set_flashdata('error','Você não tem permissão para adicionar O.S.');
+           redirect(base_url());
+        }
+
+        $this->load->library('form_validation');
+        $this->data['custom_error'] = '';
+        
+        if ($this->form_validation->run('desempenho') == false) {
+           $this->data['custom_error'] = (validation_errors() ? true : false);
+        } else {
+
+            $dataInicial = $this->input->post('dataInicial');
+            $dataDeslig = $this->input->post('dataDeslig');
+
+            try {
+                
+                $dataInicial = explode('/', $dataInicial);
+                $dataInicial = $dataInicial[2].'-'.$dataInicial[1].'-'.$dataInicial[0];
+
+                if($dataDeslig){
+                    $dataDeslig = explode('/', $dataDeslig);
+                    $dataDeslig = $dataDeslig[2].'-'.$dataDeslig[1].'-'.$dataDeslig[0];
+                }else{
+                    $dataDeslig = date('Y/m/d');
+                }
+
+            } catch (Exception $e) {
+               $dataInicial = date('Y/m/d'); 
+               $dataDeslig = date('Y/m/d');
+            }
+            
+            $data = array(
+                'associados_id' => $this->input->post('idAssociados'),
+                'dataInicial' => $dataInicial,
+                'responsavel_id' =>$this->input->post('responsavel_id'),//set_value('idCliente'),
+                'dataDeslig' => $dataDeslig,
+                'dpTrainee' => set_value('dpTrainee'),
+                'dpSelecao' => set_value('dpSelecao'),
+                'status' => set_value('status'),
+                'observacoes' => set_value('observacoes'),
+                'notaDesligamento' => set_value('notaDesligamento')
+            );
+
+            if ( is_numeric($id = $this->associados_model->addDesempenho('desempenho', $data, true)) ) {
+                $data2 = array(
+                    'desempenho_id'=> $id
+                    );
+                if(is_numeric($id2 = $this->associados_model->edit('associados', $data2,'idAssociados',$this->input->post('idAssociados' ) ))){
+                $this->session->set_flashdata('success','OS adicionada com sucesso, você pode adicionar produtos ou serviços a essa OS nas abas de "Produtos" e "Serviços"!');
+                redirect('associados/associados');
+               }
+            } else {
+                
+                $this->data['custom_error'] = '<div class="form_error"><p>An Error Occured.</p></div>';
+            }
+        }
+    $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
+    $this->data['view'] = 'associados/adicionarDesempenho';
+    $this->load->view('tema/topo', $this->data);
+     }
+     
    function excluir(){
 
         if(!$this->permission->checkPermission($this->session->userdata('permissao'),'dServico')){
@@ -257,15 +345,34 @@ function editar(){
             $this->session->set_flashdata('error','Erro ao tentar excluir serviço.');            
             redirect(base_url().'index.php/associados/gerenciar/');
         }
-
-        //$this->db->where('associados_id', $id);
-       // $this->db->delete('associados_os');
-
+        $this->associados_model->delete('desempenho','associados_id',$id);
         $this->associados_model->delete('associados','idAssociados',$id);             
-        
+      
 
         $this->session->set_flashdata('success','Serviço excluido com sucesso!');            
         redirect(base_url().'index.php/associados/gerenciar/');
     }
+    function excluirDesempenho(){
+
+         if(!$this->permission->checkPermission($this->session->userdata('permissao'),'dServico')){
+           $this->session->set_flashdata('error','Você não tem permissão para excluir serviços.');
+           redirect(base_url());
+        }
+       
+        
+        $id =  $this->input->post('id');
+        if ($id == null){
+
+            $this->session->set_flashdata('error','Erro ao tentar excluir serviço.');            
+            redirect(base_url().'index.php/associados/gerenciar/');
+        }
+        $this->associados_model->delete('desempenho','idDesempenho',$id);
+                    
+        
+        $this->session->set_flashdata('success','Serviço excluido com sucesso!');            
+       redirect(base_url().'index.php/associados/gerenciar/');
+    }
+
+    
 }
 
