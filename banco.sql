@@ -412,7 +412,7 @@ DEFAULT CHARACTER SET = latin1;
 CREATE TABLE IF NOT EXISTS `desempenho` (
   `idDesempenho` INT(11) NOT NULL AUTO_INCREMENT,
     `status` VARCHAR(15) NULL DEFAULT NULL,
-    `responsavel_id`  INT (11) NULL DEFAULT NULL,
+    `responsavel_id`  INT (11) NOT NULL,
     `dataInicial` DATE NULL DEFAULT NULL,
     `dataDeslig` DATE NULL DEFAULT NULL,
     `dpSelecao` TEXT NULL DEFAULT NULL ,
@@ -420,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `desempenho` (
     `observacoes` TEXT NULL DEFAULT NULL,
     `notaDesligamento` TEXT NULL DEFAULT NULL,
     PRIMARY KEY (`idDesempenho`),
-  INDEX `fk_desempenho_associados1` (`responsavel_id` ASC),
+  INDEX `fk_desempenho_associados1_idx` (`responsavel_id` ASC),
     CONSTRAINT `fk_desempenho_associados1`
     FOREIGN KEY (`responsavel_id`)
     REFERENCES `associados` (`idAssociados`)

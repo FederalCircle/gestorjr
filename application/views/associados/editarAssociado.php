@@ -198,17 +198,18 @@
                                     </thead>
                                     <tbody>
                                         <?php
+                                        $desempenho = $result->desempenho_id;
                                         $total = 0;
-                                        foreach ($desempenho as $p) {
+                                        //foreach ($desempenho as $p) {
                                             
-                                            $total = $total + $p->subTotal;
+                                        //    $total = $total + $p->subTotal;
                                             echo '<tr>';
-                                            //echo '<td>'.$p->descricao.'</td>';
+                                            echo '<td>'.$result->dpTrainee.'</td>';
                                             echo '<td>'.$p->dpSelecao.'</td>';
                                            // echo '<td><a href="" idAcao="'.$p->idProdutos_os.'" prodAcao="'.$p->idProdutos.'" quantAcao="'.$p->quantidade.'" title="Excluir Produto" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td>';
                                             //echo '<td>R$ '.number_format($p->subTotal,2,',','.').'</td>';
                                             echo '</tr>';
-                                        }?>
+                                        //}?>
                                        
                                         <tr>
                                             <td colspan="3" style="text-align: right"><strong>Total:</strong></td>

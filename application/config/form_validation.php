@@ -50,7 +50,32 @@ $config = array('clientes' => array(array(
                                 	'rules'=>'required|trim|xss_clean'
                                 ))
                 ,
-
+                'desempenho' => array(array(
+                                    'field'=>'Responsavel',
+                                    'label'=>'Responsavel',
+                                    'rules'=>'required|trim|xss_clean'
+                                    ),
+                                array(
+                                    'field'=>'dpSelecao',
+                                    'label'=>'dpSelecao',
+                                    'rules'=>'trim|xss_clean'
+                                    ),
+                                array(
+                                    'field'=>'dpTrainee',
+                                    'label'=>'dpTrainee',
+                                    'rules'=>'trim|xss_clean'
+                                    ),
+                                array(
+                                    'field'=>'dataInicial',
+                                    'label'=>'dataInicial',
+                                    'rules'=>'required|trim|xss_clean'
+                                    ),
+                                array(
+                                    'field'=>'status',
+                                    'label'=>'status',
+                                    'rules'=>'required|trim|xss_clean'
+                                    )) 
+                ,
                 'servicos' => array(array(
                                     'field'=>'nome',
                                     'label'=>'Nome',

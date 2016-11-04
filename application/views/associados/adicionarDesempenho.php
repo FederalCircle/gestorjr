@@ -22,12 +22,11 @@
 
                             <div class="span12" id="divCadastrarOs">
                                 <form action="<?php echo current_url(); ?>" method="post" id="formAssociados" class="form-horizontal">
-                                    
+                                    <?php echo form_hidden('idAssociados',$result->idAssociados) ?>
                                     <div class="span6" style="padding: 1%; margin-left: 0">
                                         
-                                        <div class="span12">
-
-                                            <label for="Responsavel">Responsável<span class="required">*</span></label>
+                                        <div class="span6">
+                                            <label for="Responsavel">Responsável<span></span></label>
                                             <input id="Responsavel" class="span12" type="text" name="Responsavel" value=""  />
                                             <input id="responsavel_id" class="span12" type="hidden" name="responsavel_id" value=""  />
                                         </div>
@@ -112,36 +111,26 @@ $(document).ready(function(){
             minLength: 1,
             select: function( event, ui ) {
 
-                 $("#associado_id").val(ui.item.id);
+                 $("#responsavel_id").val(ui.item.id);
                 
 
             }
-      });
-
-      $("#tecnico").autocomplete({
-            source: "<?php echo base_url(); ?>index.php/os/autoCompleteUsuario",
-            minLength: 1,
-            select: function( event, ui ) {
-
-                 $("#usuarios_id").val(ui.item.id);
-
-
-            }
-      });
-
+      });      
       
-      
-
-      $("#formOs").validate({
+      $("#formDesempenho").validate({
           rules:{
-             cliente: {required:true},
-             tecnico: {required:true},
-             dataInicial: {required:true}
+             status: {required:true},
+             Responsavel: {required:true},
+             dataInicial: {required:true},
+             dpTrainee: {required:true},
+             dpSelecao: {required:true}
           },
           messages:{
-             cliente: {required: 'Campo Requerido.'},
-             tecnico: {required: 'Campo Requerido.'},
-             dataInicial: {required: 'Campo Requerido.'}
+             status: {required: 'Campo Requerido.'},
+             Responsavel: {required: 'Campo Requerido.'},
+             dataInicial: {required: 'Campo Requerido.'},
+             dpSelecao: {required: 'Campo Requerido.'},
+             dpTrainee: {required: 'Campo Requerido.'}
           },
 
             errorClass: "help-inline",

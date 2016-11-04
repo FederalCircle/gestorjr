@@ -254,17 +254,19 @@ function editar(){
 
         $this->data['custom_error'] = '';
         $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
-        //$this->data['results'] = $this->associados_model->getOsByCliente($this->uri->segment(3));
         $this->data['view'] = 'associados/visualizar';
         $this->load->view('tema/topo', $this->data);
 
         
     }
-/*
-            $ID =  $this->uri->segment(3);
-            $this->associados_model->delete('associados','idAssociados',$ID);             
-            redirect(base_url().'index.php/associados/gerenciar/');
-    }*/
+    public function autoCompleteAssociados(){
+
+        if (isset($_GET['term'])){
+            $q = strtolower($_GET['term']);
+            $this->associados_model->autoCompleteAssociados($q);
+        }
+
+    }
      function adicionarDesempenho() {
          if(!$this->permission->checkPermission($this->session->userdata('permissao'),'aOs')){
            $this->session->set_flashdata('error','Você não tem permissão para adicionar O.S.');
@@ -300,7 +302,7 @@ function editar(){
 
             $data = array(
                 'dataInicial' => $dataInicial,
-                'responsavel_id' => $this->input->post('responsavel_id'),//set_value('idCliente'),
+                'responsavel_id' => 4,//$this->input->post('responsavel_id'),//set_value('idCliente'),
                 'dataDeslig' => $dataDeslig,
                 'dpTrainee' => set_value('dpTrainee'),
                 'dpSelecao' => set_value('dpSelecao'),
@@ -309,16 +311,20 @@ function editar(){
                 'notaDesligamento' => set_value('notaDesligamento')
             );
 
-            if ( is_numeric($id = $this->associados_model->add('desempenho', $data, true)) ) {
-                if(is_numeric($id2 = $this->associados_model->edit('associados', $id,'desempenho_id' ))){
+            if ( is_numeric($id = $this->associados_model->addDesempenho('desempenho', $data, true)) ) {
+                $data2 = array(
+                    'desempenho_id'=> $id
+                    );
+                if(is_numeric($id2 = $this->associados_model->edit('associados', $data2,'idAssociados',$this->input->post('idAssociados' ) ))){
                 $this->session->set_flashdata('success','OS adicionada com sucesso, você pode adicionar produtos ou serviços a essa OS nas abas de "Produtos" e "Serviços"!');
-                redirect('associados/editar/'.$id);
-                }
+                redirect('associados/associados');
+               }
             } else {
                 
                 $this->data['custom_error'] = '<div class="form_error"><p>An Error Occured.</p></div>';
             }
         }
+    $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
     $this->data['view'] = 'associados/adicionarDesempenho';
     $this->load->view('tema/topo', $this->data);
      }
