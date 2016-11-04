@@ -102,9 +102,6 @@
                                                     <td style="text-align: right"><strong>Cidade</strong></td>
                                                     <td><?php echo $result->cidade ?> - <?php echo $result->estado ?></td>
                                                 </tr>
-                                               <!-- <tr>
-                                                    <td style="text-align: right"><strong>CEP</strong></td>
-                                                    <td><?php echo $result->area ?></td>-->
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -194,7 +191,7 @@
         </div>
             <!--Tab 3-->
         <div id="tab3" class="tab-pane" style="min-height: 300px">
-            <?php if (!$results) { ?>
+            <?php if (!$desempenho) { ?>
                 
                         <table class="table table-bordered ">
                             <thead>
@@ -231,22 +228,22 @@
                             </thead>
                             <tbody>
 <?php
-                foreach ($results as $r) {
+                   foreach ($desempenho as $r) {
                    // $dataInicial = date(('d/m/Y'), strtotime($r->dataInicial));
-                   // $dataFinal = date(('d/m/Y'), strtotime($r->dataFinal));
+                   // $dataFinal = date(('d/m/Y'), strtotime($r->dataDeslig));
                     echo '<tr>';
-                    echo '<td>' . $r->idAssociado . '</td>';
+                    echo '<td>' . $desempenho->responsavel_id . '</td>';
                     /*echo '<td>' . $dataAss . '</td>';
                     echo '<td>' . $dataFinal .'</td>';*/
-                    echo '<td>' . $r->dataAss . '</td>';
+                    //echo '<td>' . $r-> . '</td>';
                     /*echo '<td>' . $r->defeito . '</td>';
 */
                     echo '<td>';
                     if($this->permission->checkPermission($this->session->userdata('permissao'),'vOs')){
-                        echo '<a href="' . base_url() . 'index.php/associados/visualizar/' . $r->idAssociado . '" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
+                        echo '<a href="' . base_url() . 'index.php/associados/visualizar/' . $desempenho->idDesempenho . '" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
                     }
                     if($this->permission->checkPermission($this->session->userdata('permissao'),'eOs')){
-                        echo '<a href="' . base_url() . 'index.php/associados/editar/' . $r->idAssociado . '" class="btn btn-info tip-top" title="Editar Associado"><i class="icon-pencil icon-white"></i></a>'; 
+                        echo '<a href="' . base_url() . 'index.php/associados/editar/' . $desempenho->idDesempenho . '" class="btn btn-info tip-top" title="Editar Desempenho"><i class="icon-pencil icon-white"></i></a>'; 
                     }
                     
                     echo  '</td>';

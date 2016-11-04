@@ -230,7 +230,7 @@ function editar(){
 
             }
         }
-
+        $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
         $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
         $this->load->model('permissoes_model');
         $this->data['permissoes'] = $this->permissoes_model->getActive('permissoes','permissoes.idPermissao,permissoes.nome'); 
@@ -253,6 +253,7 @@ function editar(){
         }
 
         $this->data['custom_error'] = '';
+        $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
         $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
         $this->data['view'] = 'associados/visualizar';
         $this->load->view('tema/topo', $this->data);
@@ -299,10 +300,11 @@ function editar(){
                $dataInicial = date('Y/m/d'); 
                $dataDeslig = date('Y/m/d');
             }
-
+            
             $data = array(
+                'associados_id' => $this->input->post('idAssociados'),
                 'dataInicial' => $dataInicial,
-                'responsavel_id' => 4,//$this->input->post('responsavel_id'),//set_value('idCliente'),
+                'responsavel_id' =>$this->input->post('responsavel_id'),//set_value('idCliente'),
                 'dataDeslig' => $dataDeslig,
                 'dpTrainee' => set_value('dpTrainee'),
                 'dpSelecao' => set_value('dpSelecao'),
@@ -343,15 +345,34 @@ function editar(){
             $this->session->set_flashdata('error','Erro ao tentar excluir serviço.');            
             redirect(base_url().'index.php/associados/gerenciar/');
         }
-
-        //$this->db->where('associados_id', $id);
-       // $this->db->delete('associados_os');
-
+        $this->associados_model->delete('desempenho','associados_id',$id);
         $this->associados_model->delete('associados','idAssociados',$id);             
-        
+      
 
         $this->session->set_flashdata('success','Serviço excluido com sucesso!');            
         redirect(base_url().'index.php/associados/gerenciar/');
     }
+    function excluirDesempenho(){
+
+         if(!$this->permission->checkPermission($this->session->userdata('permissao'),'dServico')){
+           $this->session->set_flashdata('error','Você não tem permissão para excluir serviços.');
+           redirect(base_url());
+        }
+       
+        
+        $id =  $this->input->post('id');
+        if ($id == null){
+
+            $this->session->set_flashdata('error','Erro ao tentar excluir serviço.');            
+            redirect(base_url().'index.php/associados/gerenciar/');
+        }
+        $this->associados_model->delete('associados','idAssociados',$id);             
+        $this->associados_model->delete('desempenho','associados_id',$id);
+
+        $this->session->set_flashdata('success','Serviço excluido com sucesso!');            
+        redirect(base_url().'index.php/associados/gerenciar/');
+    }
+
+    
 }
 

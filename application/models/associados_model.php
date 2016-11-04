@@ -24,24 +24,11 @@ class Associados_model extends CI_Model {
         return $result;
     }
 
-
-    
-    /*function get($table,$fields,$where='',$perpage=0,$start=0,$one=false,$array='array'){
-        
-        $this->db->select($fields);
-        $this->db->from($table);
-        $this->db->order_by('idAssociados','desc');
-        $this->db->limit($perpage,$start);
-        if($where){
-            $this->db->where($where);
-        }
-        
-        $query = $this->db->get();
-        
-        $result =  !$one  ? $query->result() : $query->row();
-        return $result;
-    }
-*/
+     function DesempenhogetById($id){
+        $this->db->where('associados_id',$id);
+        $this->db->limit(1);
+        return $this->db->get('desempenho')->row();
+      }
     function getById($id){
         $this->db->where('idAssociados',$id);
         $this->db->limit(1);
@@ -106,7 +93,7 @@ class Associados_model extends CI_Model {
         $query = $this->db->get('associados');
         if($query->num_rows > 0){
             foreach ($query->result_array() as $row){
-                $row_set[] = array('label'=>$row['nome'].' | id'.$row['idAssociados']);
+                $row_set[] = array('label'=>$row['nome'],'id'=>$row['idAssociados']);
             }
             echo json_encode($row_set);
         }

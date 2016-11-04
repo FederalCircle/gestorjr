@@ -182,7 +182,7 @@
                                     </div>
                                     <div class="span2">
                                         <label for="">.</label>
-        <?php if($result->desempenho_id== NULL){ echo '<a href="'.base_url().'index.php/associados/adicionarDesempenho/'.$result->idAssociados.'" class="btn btn-success"  associado="'.$result->idAssociados.'"><i class="icon-plus icon-white">Adicionar</i></a>'; }else{  echo '<a href="#" class="btn btn-success"><i class="icon-plus icon-white">Adicionar</i></a>'; }?>  
+        <?php if(!$desempenho){ echo '<a href="'.base_url().'index.php/associados/adicionarDesempenho/'.$result->idAssociados.'" class="btn btn-success"  associado="'.$result->idAssociados.'"><i class="icon-plus icon-white">Adicionar</i></a>'; }else{  echo '<a href="#" class="btn btn-success"><i class="icon-plus icon-white">Adicionar</i></a>'; }?>  
                                     </div>
                                 </form>
                             </div>
@@ -198,18 +198,18 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $desempenho = $result->desempenho_id;
                                         $total = 0;
+                                        if($desempenho){
                                         //foreach ($desempenho as $p) {
                                             
                                         //    $total = $total + $p->subTotal;
                                             echo '<tr>';
-                                            echo '<td>'.$result->dpTrainee.'</td>';
-                                            echo '<td>'.$p->dpSelecao.'</td>';
+                                            echo '<td>'.$desempenho->status.'</td>';
+                                            echo '<td>'.$desempenho->responsavel_id.'</td>';
                                            // echo '<td><a href="" idAcao="'.$p->idProdutos_os.'" prodAcao="'.$p->idProdutos.'" quantAcao="'.$p->quantidade.'" title="Excluir Produto" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td>';
                                             //echo '<td>R$ '.number_format($p->subTotal,2,',','.').'</td>';
                                             echo '</tr>';
-                                        //}?>
+                                        }?>
                                        
                                         <tr>
                                             <td colspan="3" style="text-align: right"><strong>Total:</strong></td>

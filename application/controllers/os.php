@@ -260,14 +260,14 @@ class Os extends CI_Controller {
             redirect(base_url().'index.php/os/gerenciar/');
         }
 
-        $this->db->where('os_id', $id);
+      /*  $this->db->where('os_id', $id);
         $this->db->delete('servicos_os');
 
         $this->db->where('os_id', $id);
         $this->db->delete('produtos_os');
 
         $this->db->where('os_id', $id);
-        $this->db->delete('anexos');
+        $this->db->delete('anexos');*/
 
         $this->os_model->delete('os','idOs',$id);             
         
