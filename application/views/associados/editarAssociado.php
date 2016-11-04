@@ -200,14 +200,14 @@
                                         <?php
                                         $total = 0;
                                         if($desempenho){
-                                        //foreach ($desempenho as $p) {
-                                            
-                                        //    $total = $total + $p->subTotal;
                                             echo '<tr>';
                                             echo '<td>'.$desempenho->status.'</td>';
                                             echo '<td>'.$desempenho->responsavel_id.'</td>';
-                                           // echo '<td><a href="" idAcao="'.$p->idProdutos_os.'" prodAcao="'.$p->idProdutos.'" quantAcao="'.$p->quantidade.'" title="Excluir Produto" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td>';
-                                            //echo '<td>R$ '.number_format($p->subTotal,2,',','.').'</td>';
+                                            echo '<td>';
+                                    if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
+                echo '<a href="#modal-excluir" role="button" data-toggle="modal" desempenho ="'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Associado"><i class="icon-remove icon-white"></i></a>'; 
+            
+            }
                                             echo '</tr>';
                                         }?>
                                        
@@ -228,22 +228,41 @@
         </div>
     </div>
 
+ 
+<!-- Modal -->
+<div id="modal-excluir" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <form action="<?php echo base_url() ?>index.php/associados/excluirDesempenho" method="post" >
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h5 id="myModalLabel">Excluir Associados</h5>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="idAssociado" name="idAssociado" value="" />
+    <input type="hidden" id="idDesempenho" name="id" value="" />
+    <h5 style="text-align: center">Deseja realmente excluir este cliente e os dados associados a ele (OS, Vendas, Receitas)?</h5>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+    <button class="btn btn-danger">Excluir</button>
+  </div>
+  </form>
+</div>
+
 
 <script  src="<?php echo base_url()?>js/jquery.validate.js"></script>
 <script type="text/javascript">
       $(document).ready(function(){
-<<<<<<< HEAD
-
     $(document).on('click', 'a', function(event) {
         
         var associado = $(this).attr('associado');
+        var desempenho =$(this).attr('desempenho');
         $('#idAssociado').val(associado);
+        $('#idDesempenho').val(desempenho);
 
     });
+        
 
        $(".money").maskMoney();
-=======
->>>>>>> parent of 9f81a84... atualizacoes modulo Associados
 
            $('#formAssociado').validate({
             rules : {

@@ -366,11 +366,11 @@ function editar(){
             $this->session->set_flashdata('error','Erro ao tentar excluir serviço.');            
             redirect(base_url().'index.php/associados/gerenciar/');
         }
-        $this->associados_model->delete('associados','idAssociados',$id);             
-        $this->associados_model->delete('desempenho','associados_id',$id);
-
+        $this->associados_model->delete('desempenho','idDesempenho',$id);
+                    
+        
         $this->session->set_flashdata('success','Serviço excluido com sucesso!');            
-        redirect(base_url().'index.php/associados/gerenciar/');
+       redirect(base_url().'index.php/associados/gerenciar/');
     }
 
     

@@ -70,14 +70,13 @@ if(!$results){?>
             echo '<td>'.$r->permissao.'</td>';
              echo '<td>'.$r->curso.'</td>';
             echo '<td>'.$r->telefone.'</td>';
-            echo '<td>
-             <a href="'.base_url().'index.php/associados/editar/'.$r->idAssociados.'" class="btn btn-info tip-top" title="Editar Usuário"><i class="icon-pencil icon-white"></i></a>';
-            if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
+            echo '<td>';
+             if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
                 echo '<a href="'.base_url().'index.php/associados/visualizar/'.$r->idAssociados.'" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
             }
-            /*if($this->permission->checkPermission($this->session->userdata('permissao'),'eCliente')){
+            if($this->permission->checkPermission($this->session->userdata('permissao'),'eCliente')){
                 echo '<a href="'.base_url().'index.php/associados/editar/'.$r->idAssociados.'" style="margin-right: 1%" class="btn btn-info tip-top" title="Editar Associado"><i class="icon-pencil icon-white"></i></a>'; 
-            }*/
+            }
 
             if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
                 echo '<a href="#modal-excluir" role="button" data-toggle="modal" associado="'.$r->idAssociados.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Associado"><i class="icon-remove icon-white"></i></a>'; 

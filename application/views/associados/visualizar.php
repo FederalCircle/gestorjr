@@ -228,16 +228,11 @@
                             </thead>
                             <tbody>
 <?php
-                   foreach ($desempenho as $r) {
-                   // $dataInicial = date(('d/m/Y'), strtotime($r->dataInicial));
-                   // $dataFinal = date(('d/m/Y'), strtotime($r->dataDeslig));
                     echo '<tr>';
                     echo '<td>' . $desempenho->responsavel_id . '</td>';
-                    /*echo '<td>' . $dataAss . '</td>';
-                    echo '<td>' . $dataFinal .'</td>';*/
-                    //echo '<td>' . $r-> . '</td>';
-                    /*echo '<td>' . $r->defeito . '</td>';
-*/
+                    echo '<td>' . $desempenho->dpSelecao . '</td>';
+                    echo '<td>' . $desempenho->dpTrainee . '</td>';
+                    echo '<td>' . $desempenho->status . '</td>';
                     echo '<td>';
                     if($this->permission->checkPermission($this->session->userdata('permissao'),'vOs')){
                         echo '<a href="' . base_url() . 'index.php/associados/visualizar/' . $desempenho->idDesempenho . '" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
@@ -248,7 +243,7 @@
                     
                     echo  '</td>';
                     echo '</tr>';
-                } ?>
+                     ?>
                             <tr>
 
                             </tr>
