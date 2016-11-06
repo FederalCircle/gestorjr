@@ -41,15 +41,14 @@
                     <div class="control-group">
                         <label for="curso" class="control-label">Curso<span class="required">*</span></label>
                         <div class="controls">
-                             <select name="curso" id="curso">
-                                 <option value="<?php echo $result->curso; ?>"><?php echo $result->curso; ?></option>
-                                <option value="Eng. civil">Eng. civil</option>
-                                <option value="Eng. de Automação Industrial">Eng. de Automação Industrial</option>
-                                <option value="Eng. de Computação">Eng. de Computação</option>
-                                <option value="Eng. de Telecomunicações">Eng. de Telecomunicações</option>
-                                <option value="Eng. Eletrônica">Eng. Eletrônica</option>
-                                <option value="Eng. EletroTécnica">Eng. EletroTécnica</option>
-                                <option value="Eng. Mecânica">Eng. Mecânica</option>
+                             <select name="curso" id="curso" value="">
+                                <option <?php if($result->curso == 'Eng. Civil'){echo 'selected';} ?> value="Eng. Civil">Eng. Civil</option>
+                                <option <?php if($result->curso == 'Eng. de Automação Industrial'){echo 'selected';} ?> value="Eng. de Automação Industrial">Eng. de Automação Industrial</option>
+                                <option <?php if($result->curso == 'Eng. de Computação'){echo 'selected';} ?> value="Eng. de Computação">Eng. de Computação</option>
+                                <option <?php if($result->curso == 'Eng. de Telecomunicações'){echo 'selected';} ?> value="Eng. de Telecomunicações">Eng. de Telecomunicações</option>
+                                <option <?php if($result->curso == 'Eng. Eletrônica'){echo 'selected';} ?> value="Eng. Eletrônica">Eng. Eletrônica</option>
+                                <option <?php if($result->curso == 'Eng. EletroTécnica'){echo 'selected';} ?> value="Eng. EletroTécnica">Eng. EletroTécnica</option>
+                                <option <?php if($result->curso == 'Eng. Mecânica'){echo 'selected';} ?> value="Eng. Mecânica">Eng. Mecânica</option>
                                 
                             </select>
                         </div>
@@ -131,12 +130,6 @@
                           <input id="dataAss" class="datepicker" type="text" name="dataAss" value="<?php echo date('d/m/Y', strtotime($result->dataAss)); ?>"  /></div>
                     </div>
                     <div class="control-group">
-                        <label for="dataAss" class="control-label">data Associação<span class="required">*</span></label>
-                        <div class="controls">
-                        <input id="dataAss" class="datepicker" type="text" name="dataAss" value="<?php echo date('d/m/Y', strtotime($result->dataAss)); ?>"  />
-                        </div>
-                    </div>
-                    <div class="control-group">
                         <label  class="control-label">Situação*</label>
                         <div class="controls">
                             <select name="situacao" id="situacao">
@@ -187,20 +180,20 @@
                                 <table class="table table-bordered" id="tblProdutos">
                                     <thead>
                                         <tr>
-                                            <th>Produto</th>
-                                            <th>Quantidade</th>
-                                            <th>Ações</th>
-                                            <th>Sub-total</th>
+                                            <th>Id</th>
+                                            <th>Associado</th>
+                                            <th>Status</th>
+                                            <th>Responsavél</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php
-                                        $total = 0;
-                                        if($desempenho){
-                                            echo '<tr>';
-                                            echo '<td>'.$desempenho->status.'</td>';
-                                            echo '<td>'.$desempenho->responsavel_id.'</td>';
-                                            echo '<td>';
+         <tbody>
+            <?php
+            echo '<tr>';
+            echo '<td>'.$desempenho->idAssociados.'</td>';
+            echo '<td>'.$desempenho->nome.'</td>';
+            echo '<td>'.$associado->status.'</td>';
+            echo '<td>'.$associado->nome.'</td>';
+            echo '<td>';
             if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
             echo '<a href="'.base_url().'index.php/associados/visualizarDesempenho/'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
             }
@@ -214,7 +207,7 @@
                                     }
                                             echo '</tr>';
                                         }
-                                            }?>
+                                            ?>
                                     </tbody>
                                 </table>
               

@@ -109,7 +109,6 @@ class Associados extends CI_Controller {
                 'situacao'=> set_value('situacao'),
                 'dataAss' => $dataAss,
                 'permissoes_id' => $this->input->post('permissoes_id'),
-                //'dataAss' => set_value('dataAss'),
             );
 
             if (is_numeric($id=$this->associados_model->add('associados', $data, true)) ) {
@@ -228,10 +227,11 @@ function editar(){
 
             }
         }
-        $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
-        $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
-        $this->load->model('permissoes_model');
-        $this->data['permissoes'] = $this->permissoes_model->getActive('permissoes','permissoes.idPermissao,permissoes.nome'); 
+    $this->data['desempenho'] = $this->associados_model->DesempenhogetByAssId($this->uri->segment(3));
+    $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
+    $this->data['associado'] = $this->associados_model->DesempenhogetByAssId2($this->uri->segment(3));
+    $this->load->model('permissoes_model');
+    $this->data['permissoes'] = $this->permissoes_model->getActive('permissoes','permissoes.idPermissao,permissoes.nome'); 
 
         $this->data['view'] = 'associados/editarAssociado';
         $this->load->view('tema/topo',$this->data);
@@ -251,7 +251,7 @@ function editar(){
         }
 
         $this->data['custom_error'] = '';
-        $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
+        $this->data['desempenho'] = $this->associados_model->DesempenhogetByAssId($this->uri->segment(3));
         $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
         $this->data['view'] = 'associados/visualizar';
         $this->load->view('tema/topo', $this->data);
@@ -270,11 +270,11 @@ function editar(){
            redirect(base_url());
         }
 
-        $this->data['custom_error'] = '';
-        $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
-        $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
-        $this->data['view'] = 'associados/visualizarDesempenho';
-        $this->load->view('tema/topo', $this->data);
+    $this->data['custom_error'] = '';
+    $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
+    $this->data['associado'] = $this->associados_model->DesempenhoAssgetById($this->uri->segment(3));
+    $this->data['view'] = 'associados/visualizarDesempenho';
+    $this->load->view('tema/topo', $this->data);
 
         
     }
@@ -381,18 +381,18 @@ function editar(){
             $data = array(
                 'associados_id' => $this->input->post('idAssociados'),
                 'dataInicial' => $dataInicial,
-                'responsavel_id' =>$this->input->post('responsavel_id'),//set_value('idCliente'),
+                'responsavel_id' =>$this->input->post('responsavel_id'),
                 'dataDeslig' => $dataDeslig,
-                'dpTrainee' => set_value('dpTrainee'),
-                'dpSelecao' => set_value('dpSelecao'),
-                'status' => set_value('status'),
-                'observacoes' => set_value('observacoes'),
-                'notaDesligamento' => set_value('notaDesligamento')
+                'dpTrainee' => $this->input->post('dpTrainee'),
+                'dpSelecao' => $this->input->post('dpSelecao'),
+                'status' => $this->input->post('status'),
+                'observacoes' => $this->input->post('observacoes'),
+                'notaDesligamento' => $this->input->post('notaDesligamento')
             );
 
-            if ( is_numeric($id = $this->associados_model->addDesempenho('desempenho', $data, true)) ) {
-                $this->session->set_flashdata('success','Desempenho Cadastrado com Sucesso');
-                redirect('associados/editar/'.$this->input->post('idAssociados'));
+            if ( $this->associados_model->edit('desempenho', $data, 'idDesempenho',$this->input->post('idDesempenho'))==TRUE) {
+                $this->session->set_flashdata('success','Desempenho editado com Sucesso');
+                redirect('associados/associados');
                }
              else {
                 
@@ -400,7 +400,7 @@ function editar(){
             }
         }
     $this->data['desempenho'] = $this->associados_model->DesempenhogetById($this->uri->segment(3));
-    $this->data['result'] = $this->associados_model->getById($this->uri->segment(3));
+    $desempenho = $this->data['desempenho'];
     $this->data['view'] = 'associados/editarDesempenho';
     $this->load->view('tema/topo', $this->data);
      }

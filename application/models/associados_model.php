@@ -33,9 +33,28 @@ class Associados_model extends CI_Model {
         $result =  !$one  ? $query->result() : $query->row();
         return $result;
     }
-
      function DesempenhogetById($id){
+        $this->db->where('idDesempenho',$id);
+        $this->db->join('associados', 'desempenho.responsavel_id = associados.idAssociados', 'left');
+        $this->db->limit(1);
+        return $this->db->get('desempenho')->row();
+      }
+      function DesempenhoAssgetById($id){
+        $this->db->where('idDesempenho',$id);
+        $this->db->join('associados', 'desempenho.associados_id = associados.idAssociados', 'left');
+        $this->db->limit(1);
+        return $this->db->get('desempenho')->row();
+      }
+     
+     function DesempenhogetByAssId($id){
         $this->db->where('associados_id',$id);
+        $this->db->join('associados', 'desempenho.associados_id = associados.idAssociados', 'left');
+        $this->db->limit(1);
+        return $this->db->get('desempenho')->row();
+      }
+      function DesempenhogetByAssId2($id){
+        $this->db->where('associados_id',$id);
+        $this->db->join('associados', 'desempenho.responsavel_id = associados.idAssociados', 'left');
         $this->db->limit(1);
         return $this->db->get('desempenho')->row();
       }
