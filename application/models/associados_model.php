@@ -23,6 +23,16 @@ class Associados_model extends CI_Model {
         $result =  !$one  ? $query->result() : $query->row();
         return $result;
     }
+     function getDesempenho($perpage=0,$start=0,$one=false){
+        
+        $this->db->from('desempenho');
+        $this->db->select('desempenho.*');
+        $this->db->limit($perpage,$start);  
+        $query = $this->db->get();
+        
+        $result =  !$one  ? $query->result() : $query->row();
+        return $result;
+    }
 
      function DesempenhogetById($id){
         $this->db->where('associados_id',$id);
@@ -48,10 +58,13 @@ class Associados_model extends CI_Model {
         
         return FALSE;       
     }
-    function add($table,$data){
+    function add($table,$data,$returnId = false){
         $this->db->insert($table, $data);         
         if ($this->db->affected_rows() == '1')
-		{
+		{             
+                            if($returnId == true){
+                            return $this->db->insert_id($table);
+                        }
 			return TRUE;
 		}
 		

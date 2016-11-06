@@ -201,15 +201,8 @@
                                             echo '<td>'.$desempenho->status.'</td>';
                                             echo '<td>'.$desempenho->responsavel_id.'</td>';
                                             echo '<td>';
-            if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
-            echo '<a href="'.base_url().'index.php/associados/visualizarDesempenho/'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
-            }
-            if($this->permission->checkPermission($this->session->userdata('permissao'),'eCliente')){
-            echo '<a href="'.base_url().'index.php/associados/editarDesempenho/'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn btn-info tip-top" title="Editar Desempenho"><i class="icon-pencil icon-white"></i></a>'; 
-            }
-
-            if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
-            echo '<a href="#modal-excluir" role="button" data-toggle="modal" desempenho ="'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Desempenho"><i class="icon-remove icon-white"></i></a>'; 
+                                    if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
+                echo '<a href="#modal-excluir" role="button" data-toggle="modal" desempenho ="'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Associado"><i class="icon-remove icon-white"></i></a>'; 
             
                                     }
                                             echo '</tr>';
