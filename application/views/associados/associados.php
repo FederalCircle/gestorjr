@@ -60,16 +60,28 @@ if(!$results){?>
         <th>Curso</th>
         <th>Telefone</th>
         <th></th>
+        <th></th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($results as $r) {
+            $a=0;
             echo '<tr>';
             echo '<td>'.$r->idAssociados.'</td>';
             echo '<td>'.$r->nome.'</td>';
             echo '<td>'.$r->permissao.'</td>';
              echo '<td>'.$r->curso.'</td>';
             echo '<td>'.$r->telefone.'</td>';
+            echo '<td>'; foreach ($desempenho as $d) {
+                # code...
+             if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
+                if($d->associados_id == $r->idAssociados){$a ++;}
+                
+             }
+
+        }
+                if($a<1){echo '<a href="'.base_url().'index.php/associados/adicionarDesempenho/'.$r->idAssociados.'" style="margin-right: 1%" class="btn btn-danger  tip-top" title="Clique para cadastrar desempenho"><i class="icon-warning-sign"></i></a>'; 
+    } '</td>';
             echo '<td>';
              if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
                 echo '<a href="'.base_url().'index.php/associados/visualizar/'.$r->idAssociados.'" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
@@ -81,7 +93,7 @@ if(!$results){?>
             if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
                 echo '<a href="#modal-excluir" role="button" data-toggle="modal" associado="'.$r->idAssociados.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Associado"><i class="icon-remove icon-white"></i></a>'; 
             }
-
+             
               
             echo '</td>';
             echo '</tr>';

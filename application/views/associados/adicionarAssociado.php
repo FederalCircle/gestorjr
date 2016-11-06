@@ -38,8 +38,7 @@
                                 <option value="Eng. Mecânica">Eng. Mecânica</option>
                                 
                             </select>
-                          <!--<input id="curso" type="text" name="curso" value="<?php echo set_value('curso'); ?>"  />
-                        --></div>
+                        </div>
                     </div>
 
                     <div class="control-group">
