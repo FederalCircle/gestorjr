@@ -17,6 +17,7 @@ class Projetos extends CI_Controller {
 
         $this->load->helper(array('form', 'codegen_helper'));
         $this->load->model('projetos_model', '', TRUE);
+        $this->load->model('associados_model', '', TRUE);
         $this->data['menuProjetos'] = 'Projetos';
     }
     
@@ -62,6 +63,7 @@ class Projetos extends CI_Controller {
         /*$this->data['results'] = $this->projetos_model->get($config['per_page'],$this->uri->segment(3));*/
         $this->data['view'] = 'projetos/projetos';
         $this->load->view('tema/topo',$this->data);
+
 
        
         
@@ -216,8 +218,11 @@ function editar(){
         $this->data['custom_error'] = '';
         $this->data['result'] = $this->projetos_model->getById($this->uri->segment(3));
         //$this->data['results'] = $this->projetos_model->getOsByCliente($this->uri->segment(3));
-        $this->data['view'] = 'projetos/visualizar';
+        $this->data['view'] = 'projetos/visualizarProjeto';
         $this->load->view('tema/topo', $this->data);
+
+        //Teste BD associado
+        $this->data['resultAss'] = $this->associados_model->getById(3);
 
         
     }
