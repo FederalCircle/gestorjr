@@ -22,7 +22,7 @@ if(!$results){?>
                         <th>Nome</th>
                         <th>Cliente</th>
                         <th>Data do Contrato</th>
-                        <th>Telefone</th>
+                        <th>Horas</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -68,7 +68,7 @@ if(!$results){?>
             echo '<td>'.$r->idProjetos.'</td>';
             echo '<td>'.$r->nome.'</td>';
             echo '<td>'.$r->cliente.'</td>';
-             echo '<td>'.$r->dataContrato.'</td>';
+             echo '<td>'.date('d/m/Y',  strtotime($r->dataContrato)).'</td>';
             echo '<td>'.$r->horas.'</td>';
             echo '<td>
              <a href="'.base_url().'index.php/projetos/editar/'.$r->idProjetos.'" class="btn btn-info tip-top" title="Editar Usuário"><i class="icon-pencil icon-white"></i></a>';
