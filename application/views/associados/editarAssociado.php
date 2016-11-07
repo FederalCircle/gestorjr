@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="<?php echo base_url();?>js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery.validate.js"></script>
+
+
 <div class="row-fluid" style="margin-top:0">
     <div class="span12">
         <div class="widget-box">
@@ -8,15 +13,17 @@
                 <h5>Editar Associado</h5>
             </div>
             <div class="widget-content nopadding">
-                <?php if ($custom_error != '') {
-                    echo '<div class="alert alert-danger">' . $custom_error . '</div>';
-                } ?>
+               
                 <div class="span12" id="divProdutosServicos" style=" margin-left: 0">
                     <ul class="nav nav-tabs">
-                        <li class="active" id="tabDetalhes"><a href="#tab1" data-toggle="tab">Detalhes da OS</a></li>
-                        <li id="tabProdutos"><a href="#tab2" data-toggle="tab">Produtos</a></li>
+                        <li class="active" id="tabDetalhes"><a href="#tab1" data-toggle="tab">Detalhes do Associado</a></li>
+                        <li id="tabProdutos"><a href="#tab2" data-toggle="tab">Avaliação de Desempenho</a></li>
                     </ul>
+             <?php if ($custom_error != '') {
+                    echo '<div class="alert alert-danger">' . $custom_error . '</div>';
+                } ?>
                     <div class="tab-content">
+
                         <div class="tab-pane active" id="tab1">
 
                             <div class="span12" id="divCadastrarOs">
@@ -34,15 +41,14 @@
                     <div class="control-group">
                         <label for="curso" class="control-label">Curso<span class="required">*</span></label>
                         <div class="controls">
-                             <select name="curso" id="curso">
-                                 <option value="<?php echo $result->curso; ?>"><?php echo $result->curso; ?></option>
-                                <option value="Eng. civil">Eng. civil</option>
-                                <option value="Eng. de Automação Industrial">Eng. de Automação Industrial</option>
-                                <option value="Eng. de Computação">Eng. de Computação</option>
-                                <option value="Eng. de Telecomunicações">Eng. de Telecomunicações</option>
-                                <option value="Eng. Eletrônica">Eng. Eletrônica</option>
-                                <option value="Eng. EletroTécnica">Eng. EletroTécnica</option>
-                                <option value="Eng. Mecânica">Eng. Mecânica</option>
+                             <select name="curso" id="curso" value="">
+                                <option <?php if($result->curso == 'Eng. Civil'){echo 'selected';} ?> value="Eng. Civil">Eng. Civil</option>
+                                <option <?php if($result->curso == 'Eng. de Automação Industrial'){echo 'selected';} ?> value="Eng. de Automação Industrial">Eng. de Automação Industrial</option>
+                                <option <?php if($result->curso == 'Eng. de Computação'){echo 'selected';} ?> value="Eng. de Computação">Eng. de Computação</option>
+                                <option <?php if($result->curso == 'Eng. de Telecomunicações'){echo 'selected';} ?> value="Eng. de Telecomunicações">Eng. de Telecomunicações</option>
+                                <option <?php if($result->curso == 'Eng. Eletrônica'){echo 'selected';} ?> value="Eng. Eletrônica">Eng. Eletrônica</option>
+                                <option <?php if($result->curso == 'Eng. EletroTécnica'){echo 'selected';} ?> value="Eng. EletroTécnica">Eng. EletroTécnica</option>
+                                <option <?php if($result->curso == 'Eng. Mecânica'){echo 'selected';} ?> value="Eng. Mecânica">Eng. Mecânica</option>
                                 
                             </select>
                         </div>
@@ -118,12 +124,10 @@
                             <input id="celular" type="text" name="celular" value="<?php echo $result->celular; ?>"  />
                         </div>
                     </div>
-
                     <div class="control-group">
-                        <label for="dataAss" class="control-label">dataAss<span class="required">*</span></label>
-                        <div class="controls">
-                            <input id="dataAss" type="text" name="dataAss" value="<?php echo $result->dataAss; ?>"  />
-                        </div>
+                          <label for="dataAss" class="control-label">Data Associação<span class="required">*</span></label>
+                          <div class="controls">
+                          <input id="dataAss" class="datepicker" type="text" name="dataAss" value="<?php echo date('d/m/Y', strtotime($result->dataAss)); ?>"  /></div>
                     </div>
                     <div class="control-group">
                         <label  class="control-label">Situação*</label>
@@ -166,59 +170,48 @@
 
              <div class="tab-pane" id="tab2">
 
-                <div class="span12 well" style="padding: 1%; margin-left: 0">
-               <!-- <form id="formProdutos" <?php if($result->desempenho_id== NULL){?>action="<?php echo base_url() ?>index.php/associados/adicionarDesempenho"<?php. }else {?> action="<?php echo base_url() ?>index.php/associados"<?php }?> method="post">
-                 -->                   <div class="span8">
-                                        <input type="hidden" name="idProduto" id="idProduto" />
-                                        <input type="hidden" name="idOsProduto" id="idOsProduto" value="<?php //echo $result->idOs?>" />
-                                        <input type="hidden" name="estoque" id="estoque" value=""/>
-                                        <input type="hidden" name="preco" id="preco" value=""/>
-                                        <label for="">Produto</label>
-                                        <input type="text" class="span12" name="produto" id="produto" placeholder="Digite o nome do produto" />
-                                    </div>
-                                    <div class="span2">
-                                        <label for="">Quantidade</label>
-                                        <input type="text" placeholder="Quantidade" id="quantidade" name="quantidade" class="span12" />
-                                    </div>
-                                    <div class="span2">
-                                        <label for="">.</label>
-        <?php if(!$desempenho){ echo '<a href="'.base_url().'index.php/associados/adicionarDesempenho/'.$result->idAssociados.'" class="btn btn-success"  associado="'.$result->idAssociados.'"><i class="icon-plus icon-white">Adicionar</i></a>'; }else{  echo '<a href="#" class="btn btn-success"><i class="icon-plus icon-white">Adicionar</i></a>'; }?>  
-                                    </div>
-                                </form>
-                            </div>
+                <div class="span11" style="padding: 1%; margin-left: 0">
+                <?php if(!$desempenho){?>
+                    <div align="center" class ="span12">
+                        <label for="">.</label>
+                            <?php echo '<a href="'.base_url().'index.php/associados/adicionarDesempenho/'.$result->idAssociados.'" class="btn btn-success span 12" associado="'.$result->idAssociados.'"><i class="icon-plus icon-white">Adicionar Desempenho</i></a>'; ?>  
+                    </div><?php }else{?>
                             <div class="span12" id="divProdutos" style="margin-left: 0">
                                 <table class="table table-bordered" id="tblProdutos">
                                     <thead>
                                         <tr>
-                                            <th>Produto</th>
-                                            <th>Quantidade</th>
-                                            <th>Ações</th>
-                                            <th>Sub-total</th>
+                                            <th>Id</th>
+                                            <th>Associado</th>
+                                            <th>Status</th>
+                                            <th>Responsavél</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php
-                                        $total = 0;
-                                        if($desempenho){
-                                            echo '<tr>';
-                                            echo '<td>'.$desempenho->status.'</td>';
-                                            echo '<td>'.$desempenho->responsavel_id.'</td>';
-                                            echo '<td>';
-                                    if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
-                echo '<a href="#modal-excluir" role="button" data-toggle="modal" desempenho ="'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Associado"><i class="icon-remove icon-white"></i></a>'; 
-            
+         <tbody>
+            <?php
+            echo '<tr>';
+            echo '<td>'.$desempenho->idAssociados.'</td>';
+            echo '<td>'.$desempenho->nome.'</td>';
+            echo '<td>'.$associado->status.'</td>';
+            echo '<td>'.$associado->nome.'</td>';
+            echo '<td>';
+            if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
+            echo '<a href="'.base_url().'index.php/associados/visualizarDesempenho/'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
             }
+            if($this->permission->checkPermission($this->session->userdata('permissao'),'eCliente')){
+            echo '<a href="'.base_url().'index.php/associados/editarDesempenho/'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn btn-info tip-top" title="Editar Desempenho"><i class="icon-pencil icon-white"></i></a>'; 
+            }
+
+            if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
+            echo '<a href="#modal-excluir" role="button" data-toggle="modal" desempenho ="'.$desempenho->idDesempenho.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Desempenho"><i class="icon-remove icon-white"></i></a>'; 
+            
+                                    }
                                             echo '</tr>';
-                                        }?>
-                                       
-                                        <tr>
-                                            <td colspan="3" style="text-align: right"><strong>Total:</strong></td>
-                                            <td><strong>R$ <?php echo number_format($total,2,',','.');?><input type="hidden" id="total-venda" value="<?php echo number_format($total,2); ?>"></strong></td>
-                                        </tr>
+                                        }
+                                            ?>
                                     </tbody>
                                 </table>
               
-
+                            </div>
                         </div>
                      </div>
                    </div>
@@ -260,36 +253,20 @@
         $('#idDesempenho').val(desempenho);
 
     });
-        
-
-       $(".money").maskMoney();
 
            $('#formAssociado').validate({
             rules : {
                   nome:{ required: true},
                   curso:{ required: true},
                   cpf:{ required: true},
-                  telefone:{ required: true},
-                  email:{ required: true},
-                  rua:{ required: true},
-                  numero:{ required: true},
-                  bairro:{ required: true},
-                  cidade:{ required: true},
-                  estado:{ required: true},
                   dataAss:{ required: true}
+
             },
             messages: {
                   nome :{ required: 'Campo Requerido.'},
-                  rg:{ required: 'Campo Requerido.'},
-                  curso:{ required: 'Campo Requerido.'},
-                  telefone:{ required: 'Campo Requerido.'},
-                  email:{ required: 'Campo Requerido.'},
-                  rua:{ required: 'Campo Requerido.'},
-                  numero:{ required: 'Campo Requerido.'},
-                  bairro:{ required: 'Campo Requerido.'},
-                  cidade:{ required: 'Campo Requerido.'},
-                  estado:{ required: 'Campo Requerido.'},
-                  dataAss:{ required: 'Campo Requerido.'}
+                  cpf:{ required: 'Campo Requerido.'},
+                  dataAss:{ required: 'Campo Requerido.'},
+                  curso:{ required: 'Campo Requerido'}
 
             },
 
@@ -303,7 +280,7 @@
                 $(element).parents('.control-group').addClass('success');
             }
            });
-
+            $(".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
       });
 </script>
 
