@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="<?php echo base_url();?>js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery.validate.js"></script>
+
 <div class="row-fluid" style="margin-top:0">
     <div class="span12">
         <div class="widget-box">
@@ -49,23 +53,23 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="dataContrato" class="control-label">Data do Contrato</label>
+                        <label for="dataContrato" class="control-label">Data do Contrato<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="dataContrato" type="text" name="dataContrato" value="<?php echo set_value('dataContrato'); ?>"  />
+                            <input id="dataContrato" class="datepicker" type="text" name="dataContrato" value=""  />
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="horas" class="control-label">Horas do Projeto</label>
+                        <label for="horas" class="control-label">Horas do Projeto<span class="required">*</span></label>
                         <div class="controls">
                             <input id="horas" type="text" name="horas" value="<?php echo set_value('horas'); ?>"  />
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="dataEntrega" class="control-label">Data de Entrega</label>
+                        <label for="dataEntrega" class="control-label">Data de Entrega<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="dataEntrega" type="text" name="dataEntrega" value="<?php echo set_value('dataEntrega'); ?>"  />
+                            <input id="dataEntrega" class="datepicker" type="text" name="dataEntrega" value=""  />
                         </div>
                     </div>
                     
@@ -136,7 +140,7 @@
                 $(element).parents('.control-group').addClass('success');
             }
            });
-
+           $(".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
       });
 </script>
 

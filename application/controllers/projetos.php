@@ -17,6 +17,7 @@ class Projetos extends CI_Controller {
 
         $this->load->helper(array('form', 'codegen_helper'));
         $this->load->model('projetos_model', '', TRUE);
+        $this->load->model('associados_model', '', TRUE);
         $this->data['menuProjetos'] = 'Projetos';
     }
     
@@ -63,6 +64,7 @@ class Projetos extends CI_Controller {
         $this->data['view'] = 'projetos/projetos';
         $this->load->view('tema/topo',$this->data);
 
+
        
         
     }
@@ -79,16 +81,26 @@ class Projetos extends CI_Controller {
         if ($this->form_validation->run('projetos') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
-
+            $dataContrato = $this->input->post('dataContrato');
+            $dataEntrega = $this->input->post('dataEntrega');
+            try {  
+                $dataContrato = explode('/', $dataContrato);
+                $dataContrato = $dataContrato[2].'-'.$dataContrato[1].'-'.$dataContrato[0];
+                $dataEntrega = explode('/', $dataEntrega);
+                $dataEntrega = $dataEntrega[2].'-'.$dataEntrega[1].'-'.$dataEntrega[0];
+            } catch (Exception $e) {
+               $dataContrato = date('d/m/y'); 
+               $dataEntrega = date('d/m/y');
+            }
             $this->load->library('encrypt');     
             $data = array(
                 'nome' => set_value('nome'),
                 'cliente' => set_value('cliente'),
                 'area' => set_value('area'),
                 'preco'=> set_value('preco'),
-                'dataContrato'=> set_value('dataContrato'),
+                'dataContrato'=> $dataContrato,
                 'horas'=> set_value('horas'),
-                'dataEntrega'=> set_value('dataEntrega'),
+                'dataEntrega'=> $dataEntrega,
             );
 
             if ($this->projetos_model->add('projetos', $data) == TRUE) {
@@ -216,8 +228,11 @@ function editar(){
         $this->data['custom_error'] = '';
         $this->data['result'] = $this->projetos_model->getById($this->uri->segment(3));
         //$this->data['results'] = $this->projetos_model->getOsByCliente($this->uri->segment(3));
-        $this->data['view'] = 'projetos/visualizar';
+        $this->data['view'] = 'projetos/visualizarProjeto';
         $this->load->view('tema/topo', $this->data);
+
+        //Teste BD associado
+        $this->data['resultAss'] = $this->associados_model->getById(3);
 
         
     }
