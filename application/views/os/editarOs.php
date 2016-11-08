@@ -110,7 +110,7 @@
 
                         <!--Produtos-->
                         <div class="tab-pane" id="tab2">
-                            <div class="span12 well" style="padding: 1%; margin-left: 0">
+                            <div class="span12" style="padding: 1%; margin-left: 0">
                                 <form id="formProdutos" action="<?php echo base_url() ?>index.php/os/adicionarProduto" method="post">
                                     <div class="span8">
                                         <input type="hidden" name="idProduto" id="idProduto" />

@@ -389,6 +389,7 @@ ENGINE = INNODB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `associados` (
   `idAssociados` INT(11) NOT NULL AUTO_INCREMENT,
+  `idAssociadosG` VARCHAR(15) NOT NULL,
   `nome` VARCHAR(80) NOT NULL,
   `curso`VARCHAR(30) NOT NULL,
   `cpf` VARCHAR(20) NOT NULL,
