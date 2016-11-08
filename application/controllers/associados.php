@@ -198,7 +198,7 @@ function editar(){
                 }
                 for ($i=count($curso)-1;$i>=0;$i--){
                     if(strlen($curso[$i])>2){
-                        if($i==1){
+                        if($i==count($curso)-1){
                          $array= str_split($curso[$i],2);   
                         }
                      else {$array= str_split($curso[$i]);}
