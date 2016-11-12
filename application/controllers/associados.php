@@ -81,18 +81,44 @@ class Associados extends CI_Controller {
         } else {
 
             $dataAss = $this->input->post('dataAss');
-
+            $idG = $this->input->post('nome');
+            $curso = $this->input->post('curso');
             try {
-                
-                $dataAss = explode('/', $dataAss);
-                $dataAss = $dataAss[2].'-'.$dataAss[1].'-'.$dataAss[0];
+                $aux;
 
+                $curso = explode(' ', $curso);
+                $dataAss = explode('/', $dataAss);
+                $idG = explode(' ', $idG);
+                
+                for ($i=0;$i<count($idG);$i++){
+                     $array= str_split($idG[$i]);
+                
+                     if(strlen($idG[$i])<=3 && ($array[0] == 'd' || $array[0]== 'D' )){     
+                       
+                       }else $aux= $aux.$array[0];
+                }
+                for ($i=count($curso)-1;$i>=0;$i--){
+                    if($i==(count($curso)-1)){
+                    $array= str_split($curso[$i],2);   
+                        }
+                     else {$array= str_split($curso[$i]);}
+                    if(strlen($curso[$i])>2){  
+                     $aux= $array[0].$aux;
+                 }
+                } 
+
+                $idG= str_split($dataAss[2],2);
+                $idG= $dataAss[1].$idG[1].$aux;
+                $dataAss = $dataAss[2].'-'.$dataAss[1].'-'.$dataAss[0];
+               
+                
             } catch (Exception $e) {
                $dataAss = date('d/m/y'); 
             }
 
             $this->load->library('encrypt');     
             $data = array(
+                'idAssociadosG' => strtoupper($idG) ,
                 'nome' => set_value('nome'),
                 'rua' => set_value('descricao'),
                 'curso' => set_value('curso'),
@@ -153,15 +179,40 @@ function editar(){
 
         } else
         { 
-            $dataAss = $this->input->post('dataAss');
-
+           $dataAss = $this->input->post('dataAss');
+            $idG = $this->input->post('nome');
+            $curso = $this->input->post('curso');
             try {
-                
-                $dataAss = explode('/', $dataAss);
-                $dataAss = $dataAss[2].'-'.$dataAss[1].'-'.$dataAss[0];
+                $aux;
 
+                $curso = explode(' ', $curso);
+                $dataAss = explode('/', $dataAss);
+                $idG = explode(' ', $idG);
+                
+                for ($i=0;$i<count($idG);$i++){
+                     $array= str_split($idG[$i]);
+                
+                     if(strlen($idG[$i])<=3 && ($array[0] == 'd' || $array[0]== 'D' )){     
+                       
+                       }else $aux= $aux.$array[0];
+                }
+                for ($i=count($curso)-1;$i>=0;$i--){
+                    if(strlen($curso[$i])>2){
+                        if($i==count($curso)-1){
+                         $array= str_split($curso[$i],2);   
+                        }
+                     else {$array= str_split($curso[$i]);}
+                     $aux= $array[0].$aux;
+                 }
+                } 
+
+                $idG= str_split($dataAss[2],2);
+                $idG= $dataAss[1].$idG[1].$aux;
+                $dataAss = $dataAss[2].'-'.$dataAss[1].'-'.$dataAss[0];
+               
+                
             } catch (Exception $e) {
-               $dataAss = date('d/m/Y'); 
+               $dataAss = date('d/m/y'); 
             }
 
             if ($this->input->post('idAssociados') == 1 && $this->input->post('situacao') == 0)
@@ -176,6 +227,7 @@ function editar(){
                 $senha = $this->encrypt->sha1($senha);
 
                 $data = array(
+                        'idAssociadosG' => strtoupper($idG),
                         'nome' => $this->input->post('nome'),
                         'curso' => $this->input->post('curso'),
                         'cpf' => $this->input->post('cpf'),
@@ -197,6 +249,7 @@ function editar(){
             else{
 
                 $data = array(
+                        'idAssociadosG' => strtoupper($idG),
                         'nome' => $this->input->post('nome'),
                         'curso' => $this->input->post('curso'),
                         'cpf' => $this->input->post('cpf'),
