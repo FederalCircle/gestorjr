@@ -103,10 +103,14 @@ class Projetos extends CI_Controller {
                 'dataEntrega'=> $dataEntrega,
             );
 
+            if ( is_numeric($id = $this->projetos_model->add('projetos', $data, true)) ) {
+                $this->session->set_flashdata('success','Projeto adicionado com sucesso!');
+                redirect('projetos/editar/'.$id);
+            }/*/
             if ($this->projetos_model->add('projetos', $data) == TRUE) {
                 $this->session->set_flashdata('success', 'Projeto adicionado com sucesso!');
                 redirect(base_url() . 'index.php/projetos');
-            } else {
+            }/**/ else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }

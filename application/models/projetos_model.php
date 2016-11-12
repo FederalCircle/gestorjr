@@ -47,13 +47,15 @@ class Projetos_model extends CI_Model {
         return $this->db->get('projetos')->row();
     }
     
-    function add($table,$data){
+    function add($table,$data, $returnId = false){
         $this->db->insert($table, $data);         
         if ($this->db->affected_rows() == '1')
 		{
+            if($returnId == true){
+                return $this->db->insert_id($table);
+            }
 			return TRUE;
 		}
-		
 		return FALSE;       
     }
     

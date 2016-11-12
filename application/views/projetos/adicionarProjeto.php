@@ -26,7 +26,8 @@
                         <label for="cliente" class="control-label">Cliente<span class="required">*</span></label>
                         <div class="controls">
                             <input id="cliente" type="text" name="cliente" value="<?php echo set_value('cliente'); ?>"  />
-                        </div>
+                            <a href="<?php echo base_url();?>index.php/clientes/adicionar" class="btn btn-success" target="_blank" style="margin-left:2em"><i class="icon-group icon-white"></i>  Adicionar Novo Cliente</a>
+                        </div>                        
                     </div>
                     <div class="control-group">
                         <label for="area" class="control-label">Área<span class="required">*</span></label>
@@ -46,9 +47,9 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="preco" class="control-label">Preço<span class="required">*</span></label>
+                        <label for="preco" class="control-label">Preço<span class="required">*</span><span style="position:absolute; padding-left: 0.3%">R$</span></label>
                         <div class="controls">
-                            <input id="preco" type="text" name="preco" value="<?php echo set_value('preco'); ?>"  />
+                            <input id="preco" class="money" type="text" name="preco" value="<?php echo set_value('preco'); ?>"  />
                         </div>
                     </div>
 
@@ -89,8 +90,8 @@
                     <div class="form-actions">
                         <div class="span12">
                             <div class="span6 offset3">
-                                <button type="submit" class="btn btn-success"><i class="icon-plus icon-white"></i> Adicionar</button>
-                                <a href="<?php echo base_url() ?>index.php/projetos" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
+                                <button type="submit" class="btn btn-success"><i class="icon-plus icon-white"></i> Adicionar Projeto</button>
+                                <a href="<?php echo base_url() ?>index.php/projetos/editar" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
                             </div>
                         </div>
                     </div>
