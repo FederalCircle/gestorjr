@@ -67,7 +67,7 @@ if(!$results){?>
         <?php foreach ($results as $r) {
             $a=0;
             echo '<tr>';
-            echo '<td>'.$r->idAssociadosG.'</td>';
+            echo '<td>'.$r->idAssociados.'</td>';
             echo '<td>'.$r->nome.'</td>';
             echo '<td>'.$r->permissao.'</td>';
              echo '<td>'.$r->curso.'</td>';

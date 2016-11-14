@@ -85,4 +85,41 @@ class Projetos_model extends CI_Model {
 	function count($table){
 		return $this->db->count_all($table);
 	}
+
+    public function autoCompleteCliente($q){
+
+        $this->db->select('*');
+        $this->db->limit(5);
+        $this->db->like('nomeCliente', $q);
+        $query = $this->db->get('clientes');
+        if($query->num_rows > 0){
+            foreach ($query->result_array() as $row){
+                $row_set[] = array('label'=>$row['nomeCliente'].' | Telefone: '.$row['telefone'],'id'=>$row['idClientes']);
+            }
+            echo json_encode($row_set);
+        }
+    }
+
+    public function autoCompleteAssociado($q){
+
+        $this->db->select('*');
+        $this->db->limit(5);
+        $this->db->like('nome', $q);
+        $this->db->where('situacao',1);
+        $query = $this->db->get('associados');
+        if($query->num_rows > 0){
+            foreach ($query->result_array() as $row){
+                $row_set[] = array('label'=>$row['nome'],'id'=>$row['idAssociados']);
+            }
+            echo json_encode($row_set);
+        }
+    }
+
+    public function getEquipe($id = null){
+        $this->db->select('projetos_equipe.*, associados.*');
+        $this->db->from('projetos_equipe');
+        $this->db->join('associados','associados.idAssociados = projetos_equipe.associado_id');
+        $this->db->where('projeto_id',$id);
+        return $this->db->get()->result();
+    }
 }

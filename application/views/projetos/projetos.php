@@ -70,15 +70,13 @@ if(!$results){?>
             echo '<td>'.$r->cliente.'</td>';
              echo '<td>'.date('d/m/Y',  strtotime($r->dataContrato)).'</td>';
             echo '<td>'.$r->horas.'</td>';
-            echo '<td>
-             <a href="'.base_url().'index.php/projetos/editar/'.$r->idProjetos.'" class="btn btn-info tip-top" title="Editar Usuário"><i class="icon-pencil icon-white"></i></a>';
+            echo '<td>';
             if($this->permission->checkPermission($this->session->userdata('permissao'),'vCliente')){
                 echo '<a href="'.base_url().'index.php/projetos/visualizar/'.$r->idProjetos.'" style="margin-right: 1%" class="btn tip-top" title="Ver mais detalhes"><i class="icon-eye-open"></i></a>'; 
             }
-            /*if($this->permission->checkPermission($this->session->userdata('permissao'),'eCliente')){
+            if($this->permission->checkPermission($this->session->userdata('permissao'),'eCliente')){
                 echo '<a href="'.base_url().'index.php/projetos/editar/'.$r->idProjetos.'" style="margin-right: 1%" class="btn btn-info tip-top" title="Editar Projeto"><i class="icon-pencil icon-white"></i></a>'; 
-            }*/
-
+            }
             if($this->permission->checkPermission($this->session->userdata('permissao'),'dCliente')){
                 echo '<a href="#modal-excluir" role="button" data-toggle="modal" projeto="'.$r->idProjetos.'" style="margin-right: 1%" class="btn btn-danger tip-top" title="Excluir Projeto"><i class="icon-remove icon-white"></i></a>'; 
             }
