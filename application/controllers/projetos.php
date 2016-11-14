@@ -144,58 +144,16 @@ function editar(){
         } else
         { 
 
-            if ($this->input->post('idProjetos') == 1 && $this->input->post('situacao') == 0)
-            {
-                $this->session->set_flashdata('error','O usuário super admin não pode ser desativado!');
-                redirect(base_url().'index.php/projetos/editar/'.$this->input->post('idProjetos'));
-            }
-
-            $senha = $this->input->post('senha'); 
-            if($senha != null){
-                $this->load->library('encrypt');   
-                $senha = $this->encrypt->sha1($senha);
-
-                $data = array(
-                        'nome' => $this->input->post('nome'),
-                        'curso' => $this->input->post('curso'),
-                        'cpf' => $this->input->post('cpf'),
-                        'rua' => $this->input->post('rua'),
-                        'numero' => $this->input->post('numero'),
-                        'bairro' => $this->input->post('bairro'),
-                        'cidade' => $this->input->post('cidade'),
-                        'estado' => $this->input->post('estado'),
-                        'email' => $this->input->post('email'),
-                        'senha' => $senha,
-                        'telefone' => $this->input->post('telefone'),
-                        'celular' => $this->input->post('celular'),
-                        'dataAss' => $this->input->post('dataAss'),
-                        'situacao' => $this->input->post('situacao'),
-                        'permissoes_id' => $this->input->post('permissoes_id')
-                );
-            }  
-
-            else{
-
-                $data = array(
-                        'nome' => $this->input->post('nome'),
-                        'curso' => $this->input->post('curso'),
-                        'cpf' => $this->input->post('cpf'),
-                        'rua' => $this->input->post('rua'),
-                        'numero' => $this->input->post('numero'),
-                        'bairro' => $this->input->post('bairro'),
-                        'cidade' => $this->input->post('cidade'),
-                        'estado' => $this->input->post('estado'),
-                        'email' => $this->input->post('email'),
-                        'telefone' => $this->input->post('telefone'),
-                        'celular' => $this->input->post('celular'),
-                        'dataAss' => $this->input->post('dataAss'),
-                        'situacao' => $this->input->post('situacao'),
-                        'permissoes_id' => $this->input->post('permissoes_id')
-                );
-
-            }  
-
-           
+            $data = array(
+                    'nome' => $this->input->post('nome'),
+                    'cliente' => $this->input->post('cliente'),
+                    'area' => $this->input->post('area'),
+                    'preco' => $this->input->post('preco'),
+                    'dataContrato' => $this->input->post('dataContrato'),
+                    'horas' => $this->input->post('horas'),
+                    'dataEntrega' => $this->input->post('dataEntrega')
+                    ); 
+       
             if ($this->projetos_model->edit('projetos',$data,'idProjetos',$this->input->post('idProjetos')) == TRUE)
             {
                 $this->session->set_flashdata('success','Usuário editado com sucesso!');
@@ -209,6 +167,7 @@ function editar(){
         }
 
         $this->data['result'] = $this->projetos_model->getById($this->uri->segment(3));
+        $this->data['equipe'] = $this->projetos_model->getEquipe($this->uri->segment(3));
         $this->load->model('permissoes_model');
         $this->data['permissoes'] = $this->permissoes_model->getActive('permissoes','permissoes.idPermissao,permissoes.nome'); 
 
@@ -231,7 +190,6 @@ function editar(){
 
         $this->data['custom_error'] = '';
         $this->data['result'] = $this->projetos_model->getById($this->uri->segment(3));
-        //$this->data['results'] = $this->projetos_model->getOsByCliente($this->uri->segment(3));
         $this->data['view'] = 'projetos/visualizarProjeto';
         $this->load->view('tema/topo', $this->data);
 
@@ -240,11 +198,7 @@ function editar(){
 
         
     }
-/*
-            $ID =  $this->uri->segment(3);
-            $this->projetos_model->delete('projetos','idProjetos',$ID);             
-            redirect(base_url().'index.php/projetos/gerenciar/');
-    }*/
+
    function excluir(){
 
         if(!$this->permission->checkPermission($this->session->userdata('permissao'),'dServico')){
@@ -268,6 +222,51 @@ function editar(){
 
         $this->session->set_flashdata('success','Serviço excluido com sucesso!');            
         redirect(base_url().'index.php/projetos/gerenciar/');
+    }
+
+    public function adicionarAssociado(){
+
+        
+        $data = array(
+            'associado_id'=> $this->input->post('idAssociados'),
+            'projeto_id'=> $this->input->post('idProjetos'),
+        );
+
+        if($this->projetos_model->add('projetos_equipe', $data) == true){
+
+            echo json_encode(array('result'=> true));
+        }else{
+            echo json_encode(array('result'=> false));
+        }
+
+    }
+
+    function excluirAssociado(){
+            $ID = $this->input->post('idServico');
+            if($this->projetos_model->delete('servicos_os','idServicos_os',$ID) == true){
+
+                echo json_encode(array('result'=> true));
+            }
+            else{
+                echo json_encode(array('result'=> false));
+            }
+    }
+    
+    public function autoCompleteCliente(){
+
+        if (isset($_GET['term'])){
+            $q = strtolower($_GET['term']);
+            $this->projetos_model->autoCompleteCliente($q);
+        }
+
+    }
+    public function autoCompleteAssociado(){
+
+        if (isset($_GET['term'])){
+            $q = strtolower($_GET['term']);
+            $this->projetos_model->autoCompleteAssociado($q);
+        }
+
     }
 }
 

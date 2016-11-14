@@ -74,19 +74,6 @@
                         </div>
                     </div>
                     
-                    <!--Tentar puxar infos de outros bancos de dados-->
-                    <!--
-                    <div class="control-group">
-                        <label  class="control-label">Área<span class="required">*</span></label>
-                        <div class="controls">
-                            <select name="permissoes_id" id="permissoes_id">
-                                  <?php foreach ($permissoes as $p) {
-                                      echo '<option value="'.$p->idPermissao.'">'.$p->nome.'</option>';
-                                  } ?>
-                            </select>
-                        </div>
-                    </div>
-                    -->
                     <div class="form-actions">
                         <div class="span12">
                             <div class="span6 offset3">
